@@ -24,4 +24,5 @@ require("plugins")
 require("options")
 require("bindings")
 
+require("themes.gruvbox")
 
