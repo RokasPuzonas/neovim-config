@@ -9,6 +9,10 @@ cmd [[filetype plugin on]]
 local buffer = { o, bo }
 local window = { o, wo }
 
+-- Pseudo transparent popup window
+opt('pumblend', 15)
+cmd [[highlight PmenuSel blend=0]]
+
 -- Don't wrap text to next line if there isin't enough space
 opt('wrap', false)
 
@@ -82,7 +86,7 @@ opt('clipboard', 'unnamedplus')
 
 -- Identation/Tab settings
 local tab_size = 2
-opt('foldmethod', 'indent', window)
+opt('foldmethod', 'indent')
 opt('expandtab', false, buffer)
 opt('smartindent', true, buffer)
 opt('shiftwidth', tab_size, buffer)

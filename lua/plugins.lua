@@ -9,6 +9,29 @@ local function usePlugins(use)
 	-- Various lua utilities
 	use 'nvim-lua/plenary.nvim'
 
+	-- Tree-sitter
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		config = [[require 'config.treesitter']],
+		run = ':TSUpdate'
+	}
+
+	-- Emoji file icons
+	use { 'kyazdani42/nvim-web-devicons', config = [[require 'config.devicons']] }
+
+	-- Fuzzy file finder
+	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+	use {
+		'nvim-telescope/telescope.nvim',
+		config = [[require 'config.telescope']],
+		requires = {
+			{'nvim-lua/plenary.nvim'},
+			{'nvim-treesitter/nvim-treesitter'},
+			{'kyazdani42/nvim-web-devicons', opt = true},
+			{'nvim-telescope/telescope-fzf-native.nvim', opt = true}
+		}
+	}
+
 	-- Smooth smooth scrolling
 	use 'psliwka/vim-smoothie'
 
