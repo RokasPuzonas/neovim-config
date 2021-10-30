@@ -1,3 +1,4 @@
+local opt = require 'utils.opt'
 local g = vim.g
 local cmd = vim.cmd
 
@@ -24,5 +25,11 @@ require("plugins")
 require("options")
 require("bindings")
 
-require("themes.gruvbox")
+-- Background transparency
+cmd [[autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE]]
+cmd [[autocmd ColorScheme * highlight Folded ctermbg=NONE guibg=NONE]]
+
+-- Color scheme
+opt('background', 'dark')
+cmd [[colorscheme srcery]]
 

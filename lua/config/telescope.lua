@@ -3,6 +3,7 @@ local map = require('utils.map')
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local previewers = require('telescope.previewers')
+local cmd = vim.cmd
 local M = {}
 
 local function sizelimit_maker(filepath, bufnr, opts)
@@ -44,9 +45,14 @@ map('n', '<leader>ev', [[:lua require('config.telescope').edit_config()<cr>]], s
 -- Grep string
 map('n', '<leader>fg', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)
 
+-- Change colorscheme
+map('n', '<leader>cs', [[:lua require('telescope.builtin').colorscheme()<cr>]], silent)
+
 telescope.setup{
 	defaults = {
 		buffer_previewer_maker = new_maker,
+		path_display = { "shorten" },
+		color_devicons = true,
 		mappings = {
 			i = {
 				["<esc>"] = actions.close
@@ -62,6 +68,11 @@ telescope.setup{
 		},
 		live_grep = {
       theme = "dropdown",
+			disable_coordinates = true
+		},
+		colorscheme = {
+      theme = "dropdown",
+			enable_preview = true
 		}
 	}
 }

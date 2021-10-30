@@ -54,13 +54,23 @@ local function usePlugins(use)
 	use 'michaeljsmith/vim-indent-object'
 
 	-- Color themes
-	use { 'morhetz/gruvbox', module = 'themes.gruvbox' }
+	use 'morhetz/gruvbox'
+	use 'tomasr/molokai'
+	use 'Mangeshrex/uwu.vim'
+	use 'ayu-theme/ayu-vim'
+	use 'sickill/vim-monokai'
+	use 'joshdick/onedark.vim'
+	use 'srcery-colors/srcery-vim'
+	use 'mswift42/vim-themes'
+	use 'squarefrog/tomorrow-night.vim'
+	use 'fnune/base16-vim'
 
 	-- Git integration
 	use { 'tpope/vim-fugitive', config = [[require 'config.fugitive']] }
 end
 
 -- Register custom commands for plugin manager
+vim.cmd [[command! -bang -nargs=+ -complete=customlist,v:lua.require'plugins'.loader_complete PackerLoad lua require('plugins').loader(<f-args>, '<bang>' == '!')]]
 vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
 vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
 vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
