@@ -9,6 +9,13 @@ local function usePlugins(use)
 	-- Various lua utilities
 	use 'nvim-lua/plenary.nvim'
 
+	-- Reload lua configs
+	use {
+		'famiu/nvim-reload',
+		requires = { {'nvim-lua/plenary.nvim'} },
+		config = [[require 'config.reload']]
+	}
+
 	-- Tree-sitter
 	use {
 		'nvim-treesitter/nvim-treesitter',
