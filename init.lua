@@ -12,8 +12,10 @@ g.maplocalleader = [[,]]
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
   'matchit',
-  'netrw',
-  'netrwPlugin',
+	'netrw',
+	'netrwPlugin',
+	'netrwSettings',
+	'netrwFileHandlers',
 }
 
 for _, name in ipairs(disabled_built_ins) do

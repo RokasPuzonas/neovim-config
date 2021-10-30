@@ -40,7 +40,7 @@ local silent = {silent = true}
 map('n', '<C-p>', [[:lua require('config.telescope').project_files()<cr>]], silent)
 
 -- Edit neovim config
-map('n', '<leader>ev', [[:lua require('config.telescope').edit_config()<cr>]], silent)
+map('n', '<leader>ec', [[:lua require('config.telescope').edit_config()<cr>]], silent)
 
 -- Grep string
 map('n', '<leader>fg', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)

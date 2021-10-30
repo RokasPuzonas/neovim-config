@@ -1,3 +1,4 @@
+
 local function usePlugins(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
@@ -6,13 +7,10 @@ local function usePlugins(use)
 	-- Temporary solution before PR gets merges. https://github.com/neovim/neovim/pull/15436
 	use 'lewis6991/impatient.nvim'
 
-	-- Various lua utilities
-	use 'nvim-lua/plenary.nvim'
-
 	-- Reload lua configs
 	use {
 		'famiu/nvim-reload',
-		requires = { {'nvim-lua/plenary.nvim'} },
+		requires = { 'nvim-lua/plenary.nvim' },
 		config = [[require 'config.reload']]
 	}
 
@@ -29,19 +27,15 @@ local function usePlugins(use)
 		run = ':TSUpdate'
 	}
 
-	-- Emoji file icons
-	use { 'kyazdani42/nvim-web-devicons', config = [[require 'config.devicons']] }
-
 	-- Fuzzy file finder
-	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use {
 		'nvim-telescope/telescope.nvim',
 		config = [[require 'config.telescope']],
 		requires = {
-			{'nvim-lua/plenary.nvim'},
-			{'nvim-treesitter/nvim-treesitter'},
-			{'kyazdani42/nvim-web-devicons', opt = true},
-			{'nvim-telescope/telescope-fzf-native.nvim', opt = true}
+			'nvim-lua/plenary.nvim',
+			'nvim-treesitter/nvim-treesitter',
+			{'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]},
+			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 		}
 	}
 
@@ -58,6 +52,25 @@ local function usePlugins(use)
 	use { 'justinmk/vim-sneak', config = [[require 'config.sneak']] }
 	use { 'unblevable/quick-scope', config = [[require 'config.quickscope']] }
 	use 'michaeljsmith/vim-indent-object'
+
+	-- File browser
+	-- use 'tpope/vim-vinegar'
+	use {
+		'lambdalisue/fern.vim',
+		config = [[require 'config.fern']],
+		requires = {
+			'antoinemadec/FixCursorHold.nvim',
+			'lambdalisue/fern-hijack.vim',
+			{'lambdalisue/fern-renderer-nerdfont.vim', config = [[vim.g["fern#renderer"] = "nerdfont"]]},
+			'lambdalisue/nerdfont.vim'
+		}
+	}
+
+	-- UNIX commands
+	use 'tpope/vim-eunuch'
+
+	-- Movement utilities
+	use 'tpope/vim-unimpaired'
 
 	-- Color themes
 	use 'morhetz/gruvbox'
