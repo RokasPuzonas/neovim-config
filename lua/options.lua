@@ -84,9 +84,12 @@ opt('errorbells', false)
 -- Always use system clipboard
 opt('clipboard', 'unnamedplus')
 
+-- Folding options
+opt('foldmethod', 'indent')
+opt('foldlevelstart', 99)
+
 -- Identation/Tab settings
 local tab_size = 2
-opt('foldmethod', 'indent')
 opt('expandtab', false, buffer)
 opt('smartindent', true, buffer)
 opt('shiftwidth', tab_size, buffer)
