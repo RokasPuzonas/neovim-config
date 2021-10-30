@@ -16,6 +16,12 @@ local function usePlugins(use)
 		config = [[require 'config.reload']]
 	}
 
+	-- Provides mappings for working with symbols like (), {}, [], etc.
+	use 'tpope/vim-surround'
+
+	-- Allow repeating
+	use 'tpope/vim-repeat'
+
 	-- Tree-sitter
 	use {
 		'nvim-treesitter/nvim-treesitter',
