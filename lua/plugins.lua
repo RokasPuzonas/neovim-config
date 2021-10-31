@@ -80,6 +80,11 @@ local function usePlugins(use)
 		'neovim/nvim-lspconfig',
 		config = [[require 'config.lspconfig']],
 	}
+	use {
+		'williamboman/nvim-lsp-installer',
+		requires = 'neovim/nvim-lspconfig',
+		config = [[require 'config.lspinstaller']]
+	}
 
 	-- Completion
 	use { 'onsails/lspkind-nvim' }
