@@ -10,7 +10,7 @@ local function usePlugins(use)
 	-- Reload lua configs
 	use {
 		'famiu/nvim-reload',
-		requires = { 'nvim-lua/plenary.nvim' },
+		requires = 'nvim-lua/plenary.nvim',
 		config = [[require 'config.reload']]
 	}
 
@@ -69,8 +69,35 @@ local function usePlugins(use)
 	-- UNIX commands
 	use 'tpope/vim-eunuch'
 
+	-- Snippets
+	use 'L3MON4D3/LuaSnip'
+
 	-- Movement utilities
 	use 'tpope/vim-unimpaired'
+
+	-- LSP config
+	use {
+		'neovim/nvim-lspconfig',
+		config = [[require 'config.lspconfig']],
+	}
+
+	-- Completion
+	use { 'onsails/lspkind-nvim' }
+	use {
+		'hrsh7th/nvim-cmp',
+		-- requires = 'onsails/lspkind-nvim', -- For some reason breaks with this line
+		requires = {'saadparwaiz1/cmp_luasnip'},
+		after = 'lspkind-nvim',
+		config = [[require 'config.cmp']],
+		event = 'InsertEnter *'
+	}
+	use {'tzachar/cmp-tabnine', after = 'nvim-cmp', run='./install.sh', requires = 'hrsh7th/nvim-cmp', config = [[require 'config.tabnine']]}
+	use {'hrsh7th/cmp-nvim-lsp', requires = {'hrsh7th/nvim-cmp', 'nvim-lspconfig'}}
+	use {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
+	use {'hrsh7th/cmp-buffer', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
+	use {'hrsh7th/cmp-path', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
+	use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
+	use {'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp', requires = {'L3MON4D3/LuaSnip', 'nvim-cmp'}}
 
 	-- Color themes
 	use 'morhetz/gruvbox'

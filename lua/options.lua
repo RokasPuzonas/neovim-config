@@ -9,6 +9,9 @@ cmd [[filetype plugin on]]
 local buffer = { o, bo }
 local window = { o, wo }
 
+-- List of possible completion options
+opt('completeopt', 'menu,menuone,noselect')
+
 -- Pseudo transparent popup window
 opt('pumblend', 15)
 cmd [[highlight PmenuSel blend=0]]
