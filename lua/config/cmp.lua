@@ -24,6 +24,7 @@ cmp.setup{
 		})
 	},
 	sources = {
+		{ name = 'emoji', max_item_count = 10, keyword_length = 5 },
 		{ name = 'nvim_lua' },
 
 		{ name = 'nvim_lsp', max_item_count = 20 },
@@ -42,6 +43,7 @@ cmp.setup{
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[snip]",
+				emoji = "[emoji]"
 			}
 		}
 	},

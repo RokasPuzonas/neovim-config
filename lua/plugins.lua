@@ -1,5 +1,6 @@
 
-local function usePlugins(use)
+---@diagnostic disable-next-line: unused-local
+local function usePlugins(use, use_rocks)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
@@ -102,6 +103,7 @@ local function usePlugins(use)
 	use {'hrsh7th/cmp-buffer', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'hrsh7th/cmp-path', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
+	use {'hrsh7th/cmp-emoji', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp', requires = {'L3MON4D3/LuaSnip', 'nvim-cmp'}}
 
 	-- Color themes
@@ -140,7 +142,6 @@ vim.cmd [[
 local function bootstrap()
 	local fn = vim.fn
 	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-	local packer_bootstrap
 	if fn.empty(fn.glob(install_path)) > 0 then
 		return fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 	end
