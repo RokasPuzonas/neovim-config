@@ -4,7 +4,20 @@ local M = {}
 M.flags = { debounce_text_changes = 150 }
 
 local general_settings = { }
+M.server_init_options = {
+	efm = {documentFormatting = true},
+}
+
 M.server_settings = {
+	efm = {
+		rootMarkers = {".git/"},
+		languages = {
+			lua = {
+				{ formatCommand = "lua-format -i", formatStdin = true }
+			}
+		}
+	}
+
 	-- sumneko_lua = {
 		-- Lua = {
 		-- 	runtime = {
@@ -88,6 +101,10 @@ end
 
 function M.get_server_settings(name)
 	return M.server_settings[name]
+end
+
+function M.get_server_init_options(name)
+	return M.server_init_options[name]
 end
 
 ---@diagnostic disable-next-line: empty-block
