@@ -5,25 +5,25 @@ M.flags = { debounce_text_changes = 150 }
 
 local general_settings = { }
 M.server_settings = {
-	sumneko_lua = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
-				-- Setup your lua path
-				path = vim.split(package.path, ';')
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = {'vim', 'packer_plugins'}
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true)
-			},
-			telemetry = { enable = false }
-		}
-	}
+	-- sumneko_lua = {
+		-- Lua = {
+		-- 	runtime = {
+		-- 		-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+		-- 		version = 'LuaJIT',
+		-- 		-- Setup your lua path
+		-- 		path = vim.split(package.path, ';')
+		-- 	},
+		-- 	diagnostics = {
+		-- 		-- Get the language server to recognize the `vim` global
+		-- 		globals = {'vim', 'packer_plugins'}
+		-- 	},
+		-- 	workspace = {
+		-- 		-- Make the server aware of Neovim runtime files
+		-- 		library = vim.api.nvim_get_runtime_file("", true)
+		-- 	},
+			-- telemetry = { enable = false }
+		-- }
+	-- }
 }
 
 -- Apply general settings for each server
