@@ -32,6 +32,9 @@ local function usePlugins(use, use_rocks)
 		run = ':TSUpdate'
 	}
 
+	-- Dev icons
+	use {'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]}
+
 	-- Fuzzy file finder
 	use {
 		'nvim-telescope/telescope.nvim',
@@ -39,7 +42,7 @@ local function usePlugins(use, use_rocks)
 		requires = {
 			'nvim-lua/plenary.nvim',
 			'nvim-treesitter/nvim-treesitter',
-			{'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]},
+			'kyazdani42/nvim-web-devicons',
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 		}
 	}
@@ -118,7 +121,11 @@ local function usePlugins(use, use_rocks)
 	use {'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp', requires = {'L3MON4D3/LuaSnip', 'nvim-cmp'}}
 
 	-- Better diagnostics viewer
-	use 'folke/trouble.nvim'
+	use {
+		'folke/trouble.nvim',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = [[require 'config.trouble']]
+	}
 
 	-- Color themes
 	use 'morhetz/gruvbox'
