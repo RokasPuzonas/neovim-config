@@ -132,6 +132,9 @@ local function usePlugins(use, use_rocks)
 		-- tag = 'release' -- To use the latest release
 	}
 
+	-- Analyze startup time
+	use 'tweekmonster/startuptime.vim'
+
 	-- Start screen
 	use { 'glepnir/dashboard-nvim', config = [[require 'config.dashboard']] }
 end
