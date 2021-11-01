@@ -3,7 +3,6 @@ local map = require('utils.map')
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local previewers = require('telescope.previewers')
-local cmd = vim.cmd
 local M = {}
 
 local function sizelimit_maker(filepath, bufnr, opts)
@@ -27,7 +26,7 @@ function M.project_files(opts)
   if not ok then builtin.find_files(opts) end
 end
 
-function M.edit_config(opts)
+function M.edit_config(_opts)
 	return M.project_files{
 		cwd = "~/.config/nvim",
 		prompt_title = "Neovim config"
@@ -50,7 +49,7 @@ map('n', '<leader>cs', [[:lua require('telescope.builtin').colorscheme()<cr>]], 
 
 telescope.setup{
 	defaults = {
-		buffer_previewer_maker = new_maker,
+		buffer_previewer_maker = sizelimit_maker,
 		path_display = { "shorten" },
 		color_devicons = true,
 		mappings = {
