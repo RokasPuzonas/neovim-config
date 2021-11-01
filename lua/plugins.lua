@@ -3,6 +3,8 @@
 
 ---@diagnostic disable-next-line: unused-local
 local function usePlugins(use, use_rocks)
+	use {"ray-x/lsp_signature.nvim", config = [[require 'config.lspsignature']]}
+
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
