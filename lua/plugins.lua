@@ -80,7 +80,7 @@ local function usePlugins(use, use_rocks)
 	-- Movement utilities
 	use 'tpope/vim-unimpaired'
 
-	-- LSP config
+	-- LSP
 	use {
 		'neovim/nvim-lspconfig',
 		config = [[require 'config.lspconfig']],
@@ -89,6 +89,13 @@ local function usePlugins(use, use_rocks)
 		'williamboman/nvim-lsp-installer',
 		requires = 'neovim/nvim-lspconfig',
 		config = [[require 'config.lspinstaller']]
+	}
+
+	-- LSP utils
+	use {
+		'RishabhRD/nvim-lsputils',
+		config = [[require 'config.lsputils']],
+		requires = 'RishabhRD/popfix'
 	}
 
 	-- Completion
