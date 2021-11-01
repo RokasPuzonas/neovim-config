@@ -132,6 +132,17 @@ local function usePlugins(use, use_rocks)
 		-- tag = 'release' -- To use the latest release
 	}
 
+	-- Refactoring
+	use {
+		"ThePrimeagen/refactoring.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter"
+		},
+		disable = true,
+		config = [[require 'config.refactoring']]
+	}
+
 	-- Analyze startup time
 	use 'tweekmonster/startuptime.vim'
 
