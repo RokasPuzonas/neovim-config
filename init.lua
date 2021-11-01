@@ -28,8 +28,9 @@ require("options")
 require("bindings")
 
 -- Background transparency
-cmd [[autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE]]
-cmd [[autocmd ColorScheme * highlight Folded ctermbg=NONE guibg=NONE]]
+cmd [[autocmd ColorScheme * highlight Normal ctermbg=none guibg=none]]
+cmd [[autocmd ColorScheme * highlight Folded ctermbg=none guibg=none]]
+cmd [[autocmd ColorScheme * highlight SignColumn ctermbg=none guibg=none]]
 
 -- Color scheme
 opt('background', 'dark')

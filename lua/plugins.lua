@@ -1,3 +1,5 @@
+-- TODO: Add minimal plugin mode. Disables all plugins which are not super
+-- important, to get better performance.
 
 ---@diagnostic disable-next-line: unused-local
 local function usePlugins(use, use_rocks)
@@ -123,6 +125,12 @@ local function usePlugins(use, use_rocks)
 
 	-- Git integration
 	use { 'tpope/vim-fugitive', config = [[require 'config.fugitive']] }
+	use {
+		'lewis6991/gitsigns.nvim',
+		requires = 'nvim-lua/plenary.nvim',
+		config = [[require 'config.gitsigns']]
+		-- tag = 'release' -- To use the latest release
+	}
 end
 
 -- Register custom commands for plugin manager
