@@ -26,7 +26,7 @@ opt('cursorline', true, window)
 opt('shada', [['20,<50,s10,h,/100]])
 
 -- Show current mode that you are in
-opt('showmode', false)
+opt('showmode', true)
 
 -- Keep non-visible files open
 opt('hidden', true)

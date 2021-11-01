@@ -137,6 +137,9 @@ local function usePlugins(use, use_rocks)
 
 	-- Start screen
 	use { 'glepnir/dashboard-nvim', config = [[require 'config.dashboard']] }
+
+	-- Status line
+	use { 'itchyny/lightline.vim', config = [[require 'config.lightline']]}
 end
 
 -- Register custom commands for plugin manager
