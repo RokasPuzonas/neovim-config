@@ -16,9 +16,23 @@ M.server_settings = {
 				{ formatCommand = "lua-format -i", formatStdin = true }
 			}
 		}
-	}
+	},
 
-	-- sumneko_lua = {
+	-- "Lua.runtime.version": "LuaJIT",
+	-- "Lua.workspace.library": ["${3rd}/love2d/library"],
+	-- "Lua.workspace.checkThirdParty": false,
+	-- "Lua.diagnostics.disable": ["undefined-field"]
+	sumneko_lua = {
+		Lua = {
+			-- runtime = {
+			-- 	version = "LuaJIT"
+			-- },
+			-- workspace = {
+			-- 	checkThirdParty = false,
+			-- 	library = {"${3rd}/love2d/library"}
+			-- }
+
+		-- }
 		-- Lua = {
 		-- 	runtime = {
 		-- 		-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -35,8 +49,8 @@ M.server_settings = {
 		-- 		library = vim.api.nvim_get_runtime_file("", true)
 		-- 	},
 			-- telemetry = { enable = false }
-		-- }
-	-- }
+		}
+	}
 }
 
 -- Apply general settings for each server

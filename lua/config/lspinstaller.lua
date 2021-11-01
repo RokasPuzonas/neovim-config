@@ -15,7 +15,14 @@ end
 local capabilities = lspconfig_config.get_capabilities()
 
 lsp_instller.on_server_ready(function(server)
+
+	-- print(server.name)
+	-- print(vim.inspect(lspconfig_config.get_server_settings(server.name)))
+
 	server:setup{
+		root_dir = function()
+      return vim.fn.getcwd()
+    end,
 		init_options = lspconfig_config.get_server_init_options(server.name),
 		on_attach = lspconfig_config.on_attach,
 		on_init = lspconfig_config.on_init,
