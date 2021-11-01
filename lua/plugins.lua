@@ -142,7 +142,7 @@ vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').in
 vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
 vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
 vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
-vim.cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
+vim.cmd [[command! PackerCompile source lua/plugins.lua | packadd packer.nvim | lua require('plugins').compile()]]
 
 -- Run "PackerCompile" whenever this file is updated
 vim.cmd [[
