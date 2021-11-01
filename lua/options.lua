@@ -53,6 +53,8 @@ if vim.fn.has('termguicolors') == 1 then
 end
 
 -- Better Searching (Incremental searching, live replacing)
+opt('ignorecase', true)
+opt('smartcase', true)
 opt('hlsearch', false)
 opt('incsearch', true)
 opt('inccommand', 'nosplit')
