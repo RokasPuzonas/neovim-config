@@ -131,6 +131,9 @@ local function usePlugins(use, use_rocks)
 		config = [[require 'config.gitsigns']]
 		-- tag = 'release' -- To use the latest release
 	}
+
+	-- Start screen
+	use { 'glepnir/dashboard-nvim', config = [[require 'config.dashboard']] }
 end
 
 -- Register custom commands for plugin manager

@@ -63,6 +63,12 @@ telescope.setup{
 		find_files = {
       theme = "dropdown",
     },
+		marks = {
+      theme = "dropdown",
+    },
+		oldfiles = {
+      theme = "dropdown",
+    },
 		git_files = {
       theme = "dropdown",
 		},
