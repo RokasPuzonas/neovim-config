@@ -8,12 +8,15 @@ map('n', '<c-j>', '<c-w>j')
 map('n', '<c-k>', '<c-w>k')
 map('n', '<c-l>', '<c-w>l')
 
-
+-- Resize windows
 map('n', '<M-j>', ':resize -2<cr>', silent)
 map('n', '<M-k>', ':resize +2<cr>', silent)
 map('n', '<M-h>', ':vertical resize -2<cr>', silent)
 map('n', '<M-l>', ':vertical resize +2<cr>', silent)
 
+-- Better indenting
+map('v', '<', '<gv')
+map('v', '>', '>gv')
 
 -- Go to tab by number
 map('n', '<leader>1', '1gt')
