@@ -41,8 +41,8 @@ map('n', '<C-p>', [[:lua require('config.telescope').project_files()<cr>]], sile
 -- Edit neovim config
 map('n', '<leader>ec', [[:lua require('config.telescope').edit_config()<cr>]], silent)
 
--- Grep string
-map('n', '<leader>fg', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)
+-- Find string
+map('n', '<leader>f', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)
 
 -- Change colorscheme
 map('n', '<leader>cs', [[:lua require('telescope.builtin').colorscheme()<cr>]], silent)
