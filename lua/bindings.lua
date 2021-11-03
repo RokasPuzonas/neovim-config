@@ -2,6 +2,9 @@ local map = require 'utils.map'
 
 local silent = {silent = true}
 
+-- Save file
+map('n', '<C-s>', ':w<cr>')
+
 -- Window movement
 map('n', '<c-h>', '<c-w>h')
 map('n', '<c-j>', '<c-w>j')
