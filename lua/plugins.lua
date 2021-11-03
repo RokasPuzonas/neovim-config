@@ -3,8 +3,6 @@
 
 ---@diagnostic disable-next-line: unused-local
 local function usePlugins(use, use_rocks)
-	use {"ray-x/lsp_signature.nvim", config = [[require 'config.lspsignature']]}
-
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
@@ -25,11 +23,28 @@ local function usePlugins(use, use_rocks)
 	-- Allow repeating
 	use 'tpope/vim-repeat'
 
-	-- Tree-sitter
+	-- Treesitter
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		config = [[require 'config.treesitter']],
+		branch = '0.5-compat',
 		run = ':TSUpdate'
+	}
+	use {
+		'nvim-treesitter/playground',
+		requires = 'nvim-treesitter/nvim-treesitter',
+		cmd = "TSPlaygroundToggle"
+	}
+	use {
+		'RRethy/nvim-treesitter-textsubjects',
+		requires = 'nvim-treesitter/nvim-treesitter',
+		config = [[require 'config.treesitter-textsubjects']],
+	}
+	use {
+		'nvim-treesitter/nvim-treesitter-textobjects',
+		requires = 'nvim-treesitter/nvim-treesitter',
+		config = [[require 'config.treesitter-textobjects']],
+		branch = '0.5-compat'
 	}
 
 	-- Dev icons
@@ -95,6 +110,7 @@ local function usePlugins(use, use_rocks)
 	}
 
 	-- LSP utils
+	use {"ray-x/lsp_signature.nvim", config = [[require 'config.lspsignature']]}
 	use {
 		'RishabhRD/nvim-lsputils',
 		config = [[require 'config.lsputils']],
@@ -170,6 +186,10 @@ local function usePlugins(use, use_rocks)
 
 	-- Load project specific settings from exrc
 	use { 'jenterkin/vim-autosource', config = [[require 'config.autosource']] }
+
+	-- Training plugins
+	-- use 'tjdevries/train.nvim'
+	-- use 'ThePrimeagen/vim-be-good'
 end
 
 -- Register custom commands for plugin manager
@@ -179,14 +199,6 @@ vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').upd
 vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
 vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
 vim.cmd [[command! PackerCompile source lua/plugins.lua | packadd packer.nvim | lua require('plugins').compile()]]
-
--- Run "PackerCompile" whenever this file is updated
-vim.cmd [[
-	augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-	augroup end
-]]
 
 -- Bootstrap packer.nvim. If packer.nvim is not installed, install it.
 local function bootstrap()
