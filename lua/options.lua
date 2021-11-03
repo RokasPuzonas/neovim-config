@@ -40,10 +40,6 @@ opt('clipboard', 'unnamedplus')
 -- Amount of time after which while typing mapping will be canceled
 opt('timeoutlen', 300)
 
--- Load external project specific configs
-opt('exrc', true)
-opt('secure', true)
-
 -- How whitespace characters should be displayed
 opt('listchars', [[space:.,eol:$,tab:>-]])
 

@@ -167,6 +167,9 @@ local function usePlugins(use, use_rocks)
 
 	-- Status line and tab line
 	use { 'itchyny/lightline.vim', config = [[require 'config.lightline']]}
+
+	-- Load project specific settings from exrc
+	use { 'jenterkin/vim-autosource', config = [[require 'config.autosource']] }
 end
 
 -- Register custom commands for plugin manager
