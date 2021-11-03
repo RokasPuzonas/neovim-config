@@ -111,8 +111,10 @@ end
 
 function M.on_init(initialize_params, config)
 	-- print("lsp init")
+
 	-- TODO: Load settings from ".lspconfig.json" for each projects settings
 	-- and merge them with the defaults
+	-- https://github.com/neovim/nvim-lspconfig/wiki/Project-local-settings
 end
 
 function M.get_server_settings(name)
