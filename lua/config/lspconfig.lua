@@ -27,10 +27,11 @@ M.server_settings = {
 			-- runtime = {
 			-- 	version = "LuaJIT"
 			-- },
-			-- workspace = {
-			-- 	checkThirdParty = false,
+			workspace = {
+				checkThirdParty = false,
 			-- 	library = {"${3rd}/love2d/library"}
-			-- }
+			},
+			telemetry = { enable = false }
 
 		-- }
 		-- Lua = {
@@ -48,7 +49,6 @@ M.server_settings = {
 		-- 		-- Make the server aware of Neovim runtime files
 		-- 		library = vim.api.nvim_get_runtime_file("", true)
 		-- 	},
-			-- telemetry = { enable = false }
 		}
 	}
 }
@@ -111,6 +111,8 @@ end
 
 function M.on_init(initialize_params, config)
 	-- print("lsp init")
+	-- TODO: Load settings from ".lspconfig.json" for each projects settings
+	-- and merge them with the defaults
 end
 
 function M.get_server_settings(name)

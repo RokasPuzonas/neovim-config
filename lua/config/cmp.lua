@@ -53,8 +53,8 @@ cmp.setup{
 		{ name = 'emoji', max_item_count = 10, keyword_length = 5 },
 		{ name = 'nvim_lua' },
 
-		{ name = 'nvim_lsp', max_item_count = 20 },
 		{ name = 'cmp_tabnine' },
+		{ name = 'nvim_lsp', max_item_count = 20 },
 		{ name = 'path' },
 		{ name = 'luasnip' },
 		{ name = 'buffer', max_item_count = 10, keyword_length = 5 },
