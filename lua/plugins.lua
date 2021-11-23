@@ -6,6 +6,21 @@ local function usePlugins(use, use_rocks)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
+	-- Debugger
+	-- TODO: setup vimspector
+	-- use 'puremourning/vimspector'
+
+	-- Markdown previewer
+	-- TODO: setup markdown previewer
+
+	-- Zen mode
+	-- use 'folke/zen-mode.nvim'
+	-- TODO: setup zen mode
+
+	-- Text object target
+	-- use 'wellle/targets.vim'
+	-- TODO: setup targets.vim
+
 	-- Used for loading project specific code styles
 	use 'editorconfig/editorconfig-vim'
 
