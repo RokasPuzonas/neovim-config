@@ -6,6 +6,9 @@ local function usePlugins(use, use_rocks)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
+	-- Used for loading project specific code styles
+	use 'editorconfig/editorconfig-vim'
+
 	-- Improve startup time when loading lua files.
 	-- Temporary solution before PR gets merges. https://github.com/neovim/neovim/pull/15436
 	use 'lewis6991/impatient.nvim'
