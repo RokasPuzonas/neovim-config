@@ -83,8 +83,12 @@ local function usePlugins(use, use_rocks)
 	-- Smooth smooth scrolling
 	use 'psliwka/vim-smoothie'
 
-	-- Toggle comments
-	use 'tpope/vim-commentary'
+	-- Commenting
+	use {
+		'terrortylor/nvim-comment',
+		config = [[require 'config.comment']],
+		requires = 'JoosepAlviste/nvim-ts-context-commentstring'
+	}
 
 	-- Color code colorizer
 	use { 'norcalli/nvim-colorizer.lua', config = [[require 'config.colorizer']] }
