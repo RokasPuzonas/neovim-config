@@ -5,7 +5,9 @@ M.flags = { debounce_text_changes = 150 }
 
 local general_settings = { }
 M.server_init_options = {
-	efm = {documentFormatting = true},
+	efm = {
+		documentFormatting = true
+	}
 }
 
 M.server_settings = {
@@ -14,6 +16,20 @@ M.server_settings = {
 		languages = {
 			lua = {
 				{ formatCommand = "lua-format -i", formatStdin = true }
+			}
+		},
+	},
+	jsonls = {
+		json = {
+			schemas = {
+				{
+					fileMatch = {"package.json"},
+					url = "https://json.schemastore.org/package.json"
+				},
+				{
+					fileMatch = {"tsconfig*.json"},
+					url = "https://json.schemastore.org/tsconfig.json"
+				},
 			}
 		}
 	},
@@ -91,7 +107,7 @@ function M.on_attach(client, bufnr)
   -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
   -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+  -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 
 	-- " auto-format
 	-- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
