@@ -36,13 +36,16 @@ end
 local silent = {silent = true}
 
 -- Search project files
-map('n', '<C-p>', [[:lua require('config.telescope').project_files()<cr>]], silent)
+map('n', '<C-p>', [[:lua require('config.telescope').project_files{ prompt_title = 'Project files' }<cr>]], silent)
+
+-- Search files from current working directory
+map('n', '<leader>p', [[:lua require('telescope.builtin').find_files()<cr>]], silent)
 
 -- Edit neovim config
 map('n', '<leader>ec', [[:lua require('config.telescope').edit_config()<cr>]], silent)
 
 -- Find string
-map('n', '<leader>f', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)
+map('n', '<leader>fw', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)
 
 -- Change colorscheme
 map('n', '<leader>cs', [[:lua require('telescope.builtin').colorscheme()<cr>]], silent)
