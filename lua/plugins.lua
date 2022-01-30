@@ -105,17 +105,25 @@ local function usePlugins(use, use_rocks)
 	use 'michaeljsmith/vim-indent-object'
 
 	-- File browser
-	-- use 'tpope/vim-vinegar'
 	use {
-		'lambdalisue/fern.vim',
-		config = [[require 'config.fern']],
-		requires = {
-			'antoinemadec/FixCursorHold.nvim',
-			'lambdalisue/fern-hijack.vim',
-			{'lambdalisue/fern-renderer-nerdfont.vim', config = [[vim.g["fern#renderer"] = "nerdfont"]]},
-			'lambdalisue/nerdfont.vim'
-		}
+		'kyazdani42/nvim-tree.lua',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = [[require 'config.nvim-tree']]
 	}
+	-- use {
+	-- 	'lambdalisue/fern.vim',
+	-- 	config = [[require 'config.fern']],
+	-- 	requires = {
+	-- 		'antoinemadec/FixCursorHold.nvim',
+	-- 		'lambdalisue/fern-hijack.vim',
+	-- 		{'lambdalisue/fern-renderer-nerdfont.vim', config = [[vim.g["fern#renderer"] = "nerdfont"]]},
+	-- 		'lambdalisue/nerdfont.vim'
+	-- 	}
+	-- }
+	-- alternatives:
+	-- use 'kyazdani42/nvim-tree.lua'
+	-- use 'zgpio/tree.nvim'
+	-- use 'tpope/vim-vinegar'
 
 	-- UNIX commands
 	use 'tpope/vim-eunuch'
