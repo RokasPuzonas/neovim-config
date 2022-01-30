@@ -222,6 +222,9 @@ local function usePlugins(use, use_rocks)
 	-- Load project specific settings from exrc
 	use { 'jenterkin/vim-autosource', config = [[require 'config.autosource']] }
 
+	-- Remove spaces at end of lines
+	use{ "McAuleyPenney/tidy.nvim", event = "BufWritePre" }
+
 	-- Training plugins
 	-- use 'tjdevries/train.nvim'
 	-- use 'ThePrimeagen/vim-be-good'
