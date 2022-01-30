@@ -25,6 +25,9 @@ local function usePlugins(use, use_rocks)
 	-- use 'wellle/targets.vim'
 	-- TODO: setup targets.vim
 
+	-- Align characters vertically
+	use 'godlygeek/tabular'
+
 	-- Used for loading project specific code styles
 	use 'editorconfig/editorconfig-vim'
 
