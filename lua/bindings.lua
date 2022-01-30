@@ -2,6 +2,9 @@ local map = require 'utils.map'
 
 local silent = {silent = true}
 
+-- Disable Ex mode
+map('n', 'Q', '<nop>')
+
 -- Save file
 map('n', '<C-s>', ':w<cr>')
 
