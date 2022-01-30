@@ -214,7 +214,7 @@ local function usePlugins(use, use_rocks)
 	use 'tweekmonster/startuptime.vim'
 
 	-- Start screen
-	use { 'glepnir/dashboard-nvim', config = [[require 'config.dashboard']] }
+	-- use { 'glepnir/dashboard-nvim', config = [[require 'config.dashboard']] }
 
 	-- Status line and tab line
 	use { 'itchyny/lightline.vim', config = [[require 'config.lightline']]}
