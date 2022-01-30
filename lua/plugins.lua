@@ -14,8 +14,12 @@ local function usePlugins(use, use_rocks)
 	-- TODO: setup markdown previewer
 
 	-- Zen mode
-	-- use 'folke/zen-mode.nvim'
-	-- TODO: setup zen mode
+	use { 'folke/zen-mode.nvim', config = [[require 'config.zen-mode']] }
+	use {
+		'folke/twilight.nvim',
+		requires = 'folke/zen-mode.nvim',
+		config = [[require 'config.twilight']]
+	}
 
 	-- Text object target
 	-- use 'wellle/targets.vim'
