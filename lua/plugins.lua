@@ -60,17 +60,16 @@ local function usePlugins(use, use_rocks)
 		requires = 'nvim-treesitter/nvim-treesitter',
 		cmd = "TSPlaygroundToggle"
 	}
-	use {
-		'RRethy/nvim-treesitter-textsubjects',
-		requires = 'nvim-treesitter/nvim-treesitter',
-		config = [[require 'config.treesitter-textsubjects']],
-	}
-	use {
-		'nvim-treesitter/nvim-treesitter-textobjects',
-		requires = 'nvim-treesitter/nvim-treesitter',
-		config = [[require 'config.treesitter-textobjects']],
-		branch = '0.5-compat'
-	}
+	-- use {
+	-- 	'RRethy/nvim-treesitter-textsubjects',
+	-- 	requires = 'nvim-treesitter/nvim-treesitter',
+	-- 	config = [[require 'config.treesitter-textsubjects']],
+	-- }
+	-- use {
+	-- 	'nvim-treesitter/nvim-treesitter-textobjects',
+	-- 	requires = 'nvim-treesitter/nvim-treesitter',
+	-- 	config = [[require 'config.treesitter-textobjects']],
+	-- }
 
 	-- Dev icons
 	use {'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]}
