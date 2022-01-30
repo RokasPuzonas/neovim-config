@@ -28,14 +28,17 @@ require("options")
 require("bindings")
 
 -- Background transparency
-cmd [[autocmd ColorScheme * highlight Normal ctermbg=none guibg=none]]
-cmd [[autocmd ColorScheme * highlight Folded ctermbg=none guibg=none]]
-cmd [[autocmd ColorScheme * highlight SignColumn ctermbg=none guibg=none]]
-cmd [[autocmd ColorScheme * highlight VertSplit ctermbg=none guibg=none]]
-cmd [[autocmd ColorScheme * highlight StatusLineNC ctermbg=none guibg=none]]
-cmd [[autocmd ColorScheme * highlight CursorLineNr ctermbg=none guibg=none]]
+-- cmd [[autocmd ColorScheme * highlight Normal ctermbg=none guibg=none]]
+-- cmd [[autocmd ColorScheme * highlight Folded ctermbg=none guibg=none]]
+-- cmd [[autocmd ColorScheme * highlight SignColumn ctermbg=none guibg=none]]
+-- cmd [[autocmd ColorScheme * highlight VertSplit ctermbg=none guibg=none]]
+-- cmd [[autocmd ColorScheme * highlight StatusLineNC ctermbg=none guibg=none]]
+-- cmd [[autocmd ColorScheme * highlight CursorLineNr ctermbg=none guibg=none]]
 
--- Color scheme
-opt('background', 'dark')
-cmd [[colorscheme srcery]]
+-- THEME_BEGIN
+cmd("colorscheme srcery")
+-- THEME_END
 
+-- THEME_BEGIN
+cmd("colorscheme srcery")
+-- THEME_END
