@@ -50,11 +50,10 @@ cmp.setup{
 		end, { "i", "s" }),
 	},
 	sources = {
-		{ name = 'emoji', max_item_count = 10, keyword_length = 5 },
 		{ name = 'nvim_lua' },
 
-		{ name = 'cmp_tabnine' },
 		{ name = 'nvim_lsp', max_item_count = 20 },
+		{ name = 'cmp_tabnine' },
 		{ name = 'path' },
 		{ name = 'luasnip' },
 		{ name = 'buffer', max_item_count = 10, keyword_length = 5 },
@@ -69,7 +68,6 @@ cmp.setup{
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[snip]",
-				emoji = "[emoji]"
 			}
 		}
 	},

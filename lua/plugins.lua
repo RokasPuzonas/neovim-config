@@ -162,7 +162,6 @@ local function usePlugins(use, use_rocks)
 	use {'hrsh7th/cmp-buffer', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'hrsh7th/cmp-path', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
-	use {'hrsh7th/cmp-emoji', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp', requires = {'L3MON4D3/LuaSnip', 'nvim-cmp'}}
 
 	-- Better diagnostics viewer
@@ -274,4 +273,3 @@ local plugins = setmetatable({}, {
 })
 
 return plugins
-
