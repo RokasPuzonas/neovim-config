@@ -32,5 +32,16 @@ lsp_instller.on_server_ready(function(server)
 	}
 end)
 
-return M
+require("lspconfig").gdscript.setup{
+	root_dir = function()
+		return vim.fn.getcwd()
+	end,
+	init_options = lspconfig_config.get_server_init_options("godot"),
+	on_attach = lspconfig_config.on_attach,
+	on_init = lspconfig_config.on_init,
+	flags = lspconfig_config.flags,
+	capabilities = capabilities,
+	settings = lspconfig_config.get_server_settings("godot")
+}
 
+return M

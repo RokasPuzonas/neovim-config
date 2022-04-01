@@ -38,7 +38,3 @@ require("bindings")
 -- THEME_BEGIN
 cmd("colorscheme srcery")
 -- THEME_END
-
--- THEME_BEGIN
-cmd("colorscheme srcery")
--- THEME_END

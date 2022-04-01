@@ -25,6 +25,20 @@ local function usePlugins(use, use_rocks)
 	-- use 'wellle/targets.vim'
 	-- TODO: setup targets.vim
 
+	-- Live html, css, javascript reloading
+	-- TODO: Do auto setup of plugin.
+	-- Because you have to manually install the server at least once
+	-- in the location where packer installs this.
+	-- For me:
+	-- > cd ~/.local/share/nvim/site/pack/packer/opt/bracey.vim
+	-- > npm install --prefix server
+	-- use {
+	-- 	'turbio/bracey.vim',
+	-- 	cmd = { 'Bracey', 'BraceyStop', 'BraceyReload', 'BraceyEval' },
+	-- 	run = 'npm install --prefix server',
+	-- 	config = [[require 'config.bracey']]
+	-- }
+
 	-- Align characters vertically
 	use 'godlygeek/tabular'
 
@@ -145,6 +159,9 @@ local function usePlugins(use, use_rocks)
 		config = [[require 'config.lspinstaller']]
 	}
 
+	-- Godot support
+  use 'habamax/vim-godot'
+
 	-- LSP utils
 	use {"ray-x/lsp_signature.nvim", config = [[require 'config.lspsignature']]}
 	use {
@@ -179,18 +196,19 @@ local function usePlugins(use, use_rocks)
 	}
 
 	-- Color themes
-	use 'morhetz/gruvbox'
-	use 'tomasr/molokai'
-	use 'Mangeshrex/uwu.vim'
-	use 'ayu-theme/ayu-vim'
-	use 'sickill/vim-monokai'
-	use 'joshdick/onedark.vim'
 	use 'srcery-colors/srcery-vim'
-	use 'mswift42/vim-themes'
-	use 'squarefrog/tomorrow-night.vim'
-	use 'fnune/base16-vim'
+	use 'morhetz/gruvbox'
+	-- use 'tomasr/molokai'
+	-- use 'Mangeshrex/uwu.vim'
+	-- use 'ayu-theme/ayu-vim'
+	-- use 'sickill/vim-monokai'
+	-- use 'joshdick/onedark.vim'
+	-- use 'mswift42/vim-themes'
+	-- use 'squarefrog/tomorrow-night.vim'
+	-- use 'fnune/base16-vim'
 
 	-- Git integration
+  use 'antonk52/gitignore-grabber.nvim'
 	use { 'tpope/vim-fugitive', config = [[require 'config.fugitive']] }
 	use {
 		'lewis6991/gitsigns.nvim',
