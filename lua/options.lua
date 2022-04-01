@@ -100,4 +100,3 @@ opt('softtabstop', tab_size, buffer)
 -- Place splits below and to the right by default
 opt('splitbelow', true)
 opt('splitright', true)
-

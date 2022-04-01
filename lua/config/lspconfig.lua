@@ -66,6 +66,14 @@ M.server_settings = {
 		-- 		library = vim.api.nvim_get_runtime_file("", true)
 		-- 	},
 		}
+	},
+
+	rust_analyzer = {
+		["rust-analyzer"] = {
+			checkOnSave = {
+				command = "clippy"
+			}
+		}
 	}
 }
 
@@ -148,4 +156,3 @@ if packer_plugins['nvim-lsp-installer'] and packer_plugins['nvim-lsp-installer']
 end
 
 return M
-
