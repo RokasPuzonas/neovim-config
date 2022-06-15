@@ -22,22 +22,7 @@ local function usePlugins(use, use_rocks)
 	}
 
 	-- Text object target
-	-- use 'wellle/targets.vim'
-	-- TODO: setup targets.vim
-
-	-- Live html, css, javascript reloading
-	-- TODO: Do auto setup of plugin.
-	-- Because you have to manually install the server at least once
-	-- in the location where packer installs this.
-	-- For me:
-	-- > cd ~/.local/share/nvim/site/pack/packer/opt/bracey.vim
-	-- > npm install --prefix server
-	-- use {
-	-- 	'turbio/bracey.vim',
-	-- 	cmd = { 'Bracey', 'BraceyStop', 'BraceyReload', 'BraceyEval' },
-	-- 	run = 'npm install --prefix server',
-	-- 	config = [[require 'config.bracey']]
-	-- }
+	use 'wellle/targets.vim'
 
 	-- Align characters vertically
 	use 'godlygeek/tabular'
@@ -62,6 +47,9 @@ local function usePlugins(use, use_rocks)
 	-- Allow repeating
 	use 'tpope/vim-repeat'
 
+	-- GLSL language support
+	use 'tikhomirov/vim-glsl'
+
 	-- Treesitter
 	use {
 		'nvim-treesitter/nvim-treesitter',
@@ -74,16 +62,6 @@ local function usePlugins(use, use_rocks)
 		requires = 'nvim-treesitter/nvim-treesitter',
 		cmd = "TSPlaygroundToggle"
 	}
-	-- use {
-	-- 	'RRethy/nvim-treesitter-textsubjects',
-	-- 	requires = 'nvim-treesitter/nvim-treesitter',
-	-- 	config = [[require 'config.treesitter-textsubjects']],
-	-- }
-	-- use {
-	-- 	'nvim-treesitter/nvim-treesitter-textobjects',
-	-- 	requires = 'nvim-treesitter/nvim-treesitter',
-	-- 	config = [[require 'config.treesitter-textobjects']],
-	-- }
 
 	-- Dev icons
 	use {'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]}
@@ -101,7 +79,7 @@ local function usePlugins(use, use_rocks)
 	}
 
 	-- Smooth smooth scrolling
-	use 'psliwka/vim-smoothie'
+	use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }
 
 	-- Commenting
 	use {
@@ -197,7 +175,7 @@ local function usePlugins(use, use_rocks)
 
 	-- Color themes
 	use 'srcery-colors/srcery-vim'
-	use 'morhetz/gruvbox'
+	-- use 'morhetz/gruvbox'
 	-- use 'tomasr/molokai'
 	-- use 'Mangeshrex/uwu.vim'
 	-- use 'ayu-theme/ayu-vim'
@@ -208,7 +186,6 @@ local function usePlugins(use, use_rocks)
 	-- use 'fnune/base16-vim'
 
 	-- Git integration
-  use 'antonk52/gitignore-grabber.nvim'
 	use { 'tpope/vim-fugitive', config = [[require 'config.fugitive']] }
 	use {
 		'lewis6991/gitsigns.nvim',
@@ -230,9 +207,6 @@ local function usePlugins(use, use_rocks)
 
 	-- Analyze startup time
 	use 'tweekmonster/startuptime.vim'
-
-	-- Start screen
-	-- use { 'glepnir/dashboard-nvim', config = [[require 'config.dashboard']] }
 
 	-- Status line and tab line
 	use { 'itchyny/lightline.vim', config = [[require 'config.lightline']]}
