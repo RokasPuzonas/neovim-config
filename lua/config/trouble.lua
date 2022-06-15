@@ -4,5 +4,6 @@ require('trouble').setup()
 
 local silent = {silent = true}
 
-map('n', '<leader>q', ':TroubleToggle document_diagnostics<cr>', silent)
-
+map('n', '<leader>qq', ':TroubleToggle document_diagnostics<cr>', silent)
+map('n', '<leader>qf', ':TroubleToggle workspace_diagnostics<cr>', silent)
+map('n', '<leader>rf', ':TroubleToggle lsp_references<cr>', silent)
