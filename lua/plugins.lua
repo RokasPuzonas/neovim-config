@@ -13,6 +13,9 @@ local function usePlugins(use, use_rocks)
 	-- Markdown previewer
 	-- TODO: setup markdown previewer
 
+	-- Seemless pane switching betwen tmux and vim
+	use 'christoomey/vim-tmux-navigator'
+
 	-- Zen mode
 	use { 'folke/zen-mode.nvim', config = [[require 'config.zen-mode']] }
 	use {
