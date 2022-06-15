@@ -27,6 +27,9 @@ require("plugins")
 require("options")
 require("bindings")
 
+-- Misc features
+require("highlight-yank")
+
 -- Background transparency
 -- cmd [[autocmd ColorScheme * highlight Normal ctermbg=none guibg=none]]
 -- cmd [[autocmd ColorScheme * highlight Folded ctermbg=none guibg=none]]
