@@ -28,3 +28,11 @@ map('v', '>', '>gv')
 map('n', '<C-Left>', ':tabprevious<cr>', silent)
 map('n', '<C-Right>', ':tabnext<cr>', silent)
 
+-- Move lines up or down
+map('n', '<A-j>', ':m .+1<CR>==', silent)
+map('n', '<A-j>', ':m .+1<CR>==', silent)
+map('n', '<A-k>', ':m .-2<CR>==', silent)
+map('i', '<A-j>', '<Esc>:m .+1<CR>==gi', silent)
+map('i', '<A-k>', '<Esc>:m .-2<CR>==gi', silent)
+map('v', '<A-j>', ":m '>+1<CR>gv=gv", silent)
+map('v', '<A-k>', ":m '<-2<CR>gv=gv", silent)
