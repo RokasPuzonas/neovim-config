@@ -42,7 +42,7 @@ map('n', '<C-p>', [[:lua require('config.telescope').project_files{ prompt_title
 map('n', '<leader>p', [[:lua require('telescope.builtin').find_files()<cr>]], silent)
 
 -- Edit neovim config
-map('n', '<leader>ec', [[:lua require('config.telescope').edit_config()<cr>]], silent)
+map('n', '<leader>ce', [[:lua require('config.telescope').edit_config()<cr>]], silent)
 
 -- Find string
 map('n', '<leader>fw', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)
