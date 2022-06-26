@@ -5,6 +5,9 @@ local silent = {silent = true}
 -- Disable Ex mode
 map('n', 'Q', '<nop>')
 
+-- Escape from terminal easier
+map('t', '<Esc>', '<C-\\><C-n>')
+
 -- Save file
 map('n', '<C-s>', ':w<cr>')
 
