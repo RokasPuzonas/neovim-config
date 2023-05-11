@@ -82,7 +82,8 @@ local function usePlugins(use, use_rocks)
 	}
 
 	-- Smooth smooth scrolling
-	use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }
+	-- use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }
+	use 'psliwka/vim-smoothie'
 
 	-- Commenting
 	use {
@@ -218,7 +219,7 @@ local function usePlugins(use, use_rocks)
 	use { 'jenterkin/vim-autosource', config = [[require 'config.autosource']] }
 
 	-- Remove spaces at end of lines
-	use{ "McAuleyPenney/tidy.nvim", event = "BufWritePre" }
+	use{ "mcauley-penney/tidy.nvim", config = [[require("tidy").setup()]] }
 
 	-- Training plugins
 	-- use 'tjdevries/train.nvim'
