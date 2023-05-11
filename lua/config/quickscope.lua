@@ -1,8 +1,9 @@
-local g = vim.g
-local cmd = vim.cmd
+return {
+	'unblevable/quick-scope',
+	config = function ()
+		-- Trigger a highlight in the appropriate direction when pressing these keys:
+		vim.g['qs_highlight_on_keys'] = {'f', 'F', 't', 'T'}
 
--- Trigger a highlight in the appropriate direction when pressing these keys:
-g['qs_highlight_on_keys'] = {'f', 'F', 't', 'T'}
-
-g['qs_max_chars'] = 150
-
+		vim.g['qs_max_chars'] = 150
+	end
+}

@@ -1,6 +1,5 @@
-local map = require 'utils.map'
 
-map("n", "<leader><leader>x", ":w<cr>:source %<cr>")
+vim.keymap.set("n", "<leader><leader>x", ":w<cr>:source %<cr>", { silent = true })
 
 function P(...)
 	print(vim.inspect(...))

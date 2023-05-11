@@ -1,5 +1,8 @@
 local ts = vim.treesitter
-local query = ts.parse_query("c", "(preproc_function_def value: (preproc_arg) @macro_def)")
+local query = ts.parse_query("c", [[
+(preproc_function_def value: (preproc_arg) @macro_def)
+(preproc_def value: (preproc_arg) @macro_def)
+]])
 
 local function get_ast_root(bufnr)
 	local tree = ts.get_parser(bufnr, "c"):parse()

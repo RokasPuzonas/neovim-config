@@ -6,7 +6,7 @@ local silent = {silent = true}
 map('n', 'Q', '<nop>')
 
 -- Save file
-map('n', '<C-s>', ':w<cr>')
+map('n', '<C-s>', ':w<cr>', silent)
 
 -- Paste from register and not replace it
 -- map('x', '<leader>p', '"_dP')
@@ -30,13 +30,6 @@ map('v', '>', '>gv')
 -- Better movement between tabs
 map('n', '<C-Left>', ':tabprevious<cr>', silent)
 map('n', '<C-Right>', ':tabnext<cr>', silent)
-
--- Move lines up or down
-map('n', '<A-j>', ':m .+1<CR>==', silent)
-map('n', '<A-j>', ':m .+1<CR>==', silent)
-map('n', '<A-k>', ':m .-2<CR>==', silent)
-map('v', '<A-j>', ":m '>+1<CR>gv=gv", silent)
-map('v', '<A-k>', ":m '<-2<CR>gv=gv", silent)
 
 -- Move between windows easier in terminal windows
 function _G.set_terminal_keymaps()

@@ -117,3 +117,12 @@ if vim.g.neovide then
 	vim.g.neovide_scale_factor = 0.75
 	vim.g.neovide_hide_mouse_when_typing = true
 end
+
+-- Change c file comment string
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("set-c-commentstring", { clear = true }),
+	pattern = {"c", "cc", "cpp", "h", "hpp"},
+	callback = function(data)
+		vim.api.nvim_buf_set_option(data.buf, "commentstring", "// %s")
+	end
+})

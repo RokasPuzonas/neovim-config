@@ -1,99 +1,115 @@
 local telescope = require('telescope')
-local map = require('utils.map')
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
-local previewers = require('telescope.previewers')
-local M = {}
-
-local function sizelimit_maker(filepath, bufnr, opts)
-  opts = opts or {}
-	local size_limit = 100 * 1024 -- 100KiB
-
-  filepath = vim.fn.expand(filepath)
-  vim.loop.fs_stat(filepath, function(_, stat)
-    if not stat then return end
-    if stat.size > size_limit then
-      return
-    else
-      previewers.buffer_previewer_maker(filepath, bufnr, opts)
-    end
-  end)
-end
 
 -- Falling back to find_files if git_files can't find a .git directory
-function M.project_files(opts)
-  local ok = pcall(builtin.git_files, opts)
-  if not ok then builtin.find_files(opts) end
+local function project_files()
+	local opts = { prompt_title = 'Project files' }
+	local ok = pcall(builtin.git_files, opts)
+	if not ok then builtin.find_files(opts) end
 end
 
-function M.edit_config(_opts)
+local function edit_config()
 	return M.project_files{
 		cwd = "~/.config/nvim",
 		prompt_title = "Neovim config"
 	}
 end
 
-local silent = {silent = true}
-
--- Search project files
-map('n', '<C-p>', [[:lua require('config.telescope').project_files{ prompt_title = 'Project files' }<cr>]], silent)
-
--- Search files from current working directory
-map('n', '<leader>p', [[:lua require('telescope.builtin').find_files()<cr>]], silent)
-
--- Edit neovim config
-map('n', '<leader>ce', [[:lua require('config.telescope').edit_config()<cr>]], silent)
-
--- Find string
-map('n', '<leader>fw', [[:lua require('telescope.builtin').live_grep()<cr>]], silent)
-
--- Change colorscheme
-map('n', '<leader>cs', [[:lua require('telescope.builtin').colorscheme()<cr>]], silent)
-
--- See help tags
-map('n', '<leader>fh', [[:lua require('telescope.builtin').help_tags()<cr>]], silent)
-
 telescope.setup{
 	defaults = {
-		buffer_previewer_maker = sizelimit_maker,
-		path_display = { "shorten" },
+		vimgrep_arguments = {
+			"rg",
+			"-L",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+		prompt_prefix = "   ",
+		selection_caret = "  ",
+		entry_prefix = "  ",
+		initial_mode = "insert",
+		selection_strategy = "reset",
+		sorting_strategy = "ascending",
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				prompt_position = "top",
+				preview_width = 0.55,
+				results_width = 0.8,
+			},
+			vertical = { mirror = false },
+			width = 0.87,
+			height = 0.80,
+			preview_cutoff = 120,
+		},
+		file_sorter = require("telescope.sorters").get_fuzzy_file,
+		file_ignore_patterns = { "node_modules" },
+		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+		path_display = { "truncate" },
 		color_devicons = true,
+		winblend = 0,
+		border = {},
+		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+		-- Developer configurations: Not meant for general override
+		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 		mappings = {
-			i = {
-				["<esc>"] = actions.close
-			}
-		}
+			i = { ["<esc>"] = actions.close }
+		},
 	},
 	pickers = {
-		find_files = {
-      theme = "dropdown",
-    },
-		marks = {
-      theme = "dropdown",
-    },
-		help_tags = {
-      theme = "dropdown",
-		},
-		oldfiles = {
-      theme = "dropdown",
-    },
-		git_files = {
-      theme = "dropdown",
-		},
 		live_grep = {
-      theme = "dropdown",
 			disable_coordinates = true
 		},
 		colorscheme = {
-      theme = "dropdown",
 			enable_preview = true
+		}
+	},
+	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown {}
 		}
 	}
 }
+
+telescope.load_extension("ui-select")
 
 local fzfPlugin = packer_plugins["telescope-fzf-native.nvim"]
 if fzfPlugin and fzfPlugin.loaded then
 	telescope.load_extension('fzf')
 end
 
-return M
+
+local keymaps = {
+	-- Search project files
+	{ "<C-p>", project_files, description = "Open git files" },
+
+	-- Search files from current working directory
+	{ "<leader>p", function() builtin.find_files() end, description = "Open files" },
+
+	-- Edit neovim config
+	{"<leader>ce", edit_config, description = "Edit neovim config" },
+
+	-- Grep string
+	{ "<leader>fw", function() builtin.live_grep() end, description = "Grep" },
+
+	-- Change colorscheme
+	{ "<leader>cs", function() builtin.colorscheme() end, description = "Change colorscheme" },
+
+	-- See help tags
+	{ "<leader>fh", function() builtin.help_tags() end, description = "Search help tags" }
+}
+
+local silent = {silent = true}
+for _, keymap in ipairs(keymaps) do
+	keymap.opts = silent
+end
+
+require("legendary").keymaps(keymaps)
