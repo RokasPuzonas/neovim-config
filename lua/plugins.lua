@@ -3,132 +3,15 @@
 
 ---@diagnostic disable-next-line: unused-local
 local function usePlugins(use, use_rocks)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
-
 	-- Debugger
-	-- TODO: setup vimspector
-	-- use 'puremourning/vimspector'
-
-	-- Markdown previewer
-	-- TODO: setup markdown previewer
+	use { 'puremourning/vimspector', config = [[require 'config.vimspector']] }
+	use 'puuuuh/vimspector-rust'
 
 	-- Seemless pane switching betwen tmux and vim
 	use 'christoomey/vim-tmux-navigator'
 
-	-- Ansible file syntax highlighting
-	use 'pearofducks/ansible-vim'
-
-	-- Zen mode
-	use { 'folke/zen-mode.nvim', config = [[require 'config.zen-mode']] }
-	use {
-		'folke/twilight.nvim',
-		requires = 'folke/zen-mode.nvim',
-		config = [[require 'config.twilight']]
-	}
-
-	-- Text object target
-	use 'wellle/targets.vim'
-
-	-- Align characters vertically
-	use 'godlygeek/tabular'
-
-	-- Used for loading project specific code styles
-	use 'editorconfig/editorconfig-vim'
-
-	-- Improve startup time when loading lua files.
-	-- Temporary solution before PR gets merges. https://github.com/neovim/neovim/pull/15436
-	use 'lewis6991/impatient.nvim'
-
-	-- Reload lua configs
-	use {
-		'famiu/nvim-reload',
-		requires = 'nvim-lua/plenary.nvim',
-		config = [[require 'config.reload']]
-	}
-
-	-- Provides mappings for working with symbols like (), {}, [], etc.
-	use 'tpope/vim-surround'
-
-	-- Allow repeating
-	use 'tpope/vim-repeat'
-
-	-- GLSL language support
-	use 'tikhomirov/vim-glsl'
-
-	-- Treesitter
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		config = [[require 'config.treesitter']],
-		branch = '0.5-compat',
-		run = ':TSUpdate'
-	}
-	use {
-		'nvim-treesitter/playground',
-		requires = 'nvim-treesitter/nvim-treesitter',
-		cmd = "TSPlaygroundToggle"
-	}
-
-	-- Dev icons
-	use {'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]}
-
-	-- Fuzzy file finder
-	use {
-		'nvim-telescope/telescope.nvim',
-		config = [[require 'config.telescope']],
-		requires = {
-			'nvim-lua/plenary.nvim',
-			'nvim-treesitter/nvim-treesitter',
-			'kyazdani42/nvim-web-devicons',
-			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-		}
-	}
-
-	-- Smooth smooth scrolling
-	-- use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }
-	use 'psliwka/vim-smoothie'
-
-	-- Commenting
-	use {
-		'terrortylor/nvim-comment',
-		config = [[require 'config.comment']],
-		requires = 'JoosepAlviste/nvim-ts-context-commentstring'
-	}
-
-	-- Color code colorizer
-	use { 'norcalli/nvim-colorizer.lua', config = [[require 'config.colorizer']] }
-
-	-- Quick movement
-	use { 'justinmk/vim-sneak', config = [[require 'config.sneak']] }
-	use { 'unblevable/quick-scope', config = [[require 'config.quickscope']] }
-	use 'michaeljsmith/vim-indent-object'
-
-	-- File browser
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = 'kyazdani42/nvim-web-devicons',
-		config = [[require 'config.nvim-tree']]
-	}
-	-- use {
-	-- 	'lambdalisue/fern.vim',
-	-- 	config = [[require 'config.fern']],
-	-- 	requires = {
-	-- 		'antoinemadec/FixCursorHold.nvim',
-	-- 		'lambdalisue/fern-hijack.vim',
-	-- 		{'lambdalisue/fern-renderer-nerdfont.vim', config = [[vim.g["fern#renderer"] = "nerdfont"]]},
-	-- 		'lambdalisue/nerdfont.vim'
-	-- 	}
-	-- }
-	-- alternatives:
-	-- use 'kyazdani42/nvim-tree.lua'
-	-- use 'zgpio/tree.nvim'
-	-- use 'tpope/vim-vinegar'
-
 	-- UNIX commands
 	use 'tpope/vim-eunuch'
-
-	-- Snippets
-	use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', config = [[require 'config.luasnip']] }
 
 	-- Movement utilities
 	use 'tpope/vim-unimpaired'
@@ -144,9 +27,6 @@ local function usePlugins(use, use_rocks)
 		config = [[require 'config.lspinstaller']]
 	}
 
-	-- Godot support
-  use 'habamax/vim-godot'
-
 	-- LSP utils
 	use {"ray-x/lsp_signature.nvim", config = [[require 'config.lspsignature']]}
 	use {
@@ -155,6 +35,9 @@ local function usePlugins(use, use_rocks)
 		requires = 'RishabhRD/popfix'
 	}
 
+	-- Snippets
+	use { 'L3MON4D3/LuaSnip', config = [[require 'config.luasnip']] }
+
 	-- Completion
 	use { 'onsails/lspkind-nvim' }
 	use {
@@ -162,8 +45,7 @@ local function usePlugins(use, use_rocks)
 		-- requires = 'onsails/lspkind-nvim', -- For some reason breaks with this line
 		requires = {'saadparwaiz1/cmp_luasnip'},
 		after = 'lspkind-nvim',
-		config = [[require 'config.cmp']],
-		event = 'InsertEnter *'
+		config = [[require 'config.cmp']]
 	}
 	use {'tzachar/cmp-tabnine', after = 'nvim-cmp', run='./install.sh', requires = 'hrsh7th/nvim-cmp', config = [[require 'config.tabnine']]}
 	use {'hrsh7th/cmp-nvim-lsp', requires = {'hrsh7th/nvim-cmp', 'nvim-lspconfig'}}
@@ -192,6 +74,9 @@ local function usePlugins(use, use_rocks)
 	-- use 'squarefrog/tomorrow-night.vim'
 	-- use 'fnune/base16-vim'
 
+	-- Text object target
+	use 'wellle/targets.vim'
+
 	-- Git integration
 	use { 'tpope/vim-fugitive', config = [[require 'config.fugitive']] }
 	use {
@@ -202,15 +87,15 @@ local function usePlugins(use, use_rocks)
 	}
 
 	-- Refactoring
-	use {
-		"ThePrimeagen/refactoring.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter"
-		},
-		disable = true,
-		config = [[require 'config.refactoring']]
-	}
+	-- use {
+	-- 	"ThePrimeagen/refactoring.nvim",
+	-- 	requires = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-treesitter/nvim-treesitter"
+	-- 	},
+	-- 	disable = true,
+	-- 	config = [[require 'config.refactoring']]
+	-- }
 
 	-- Analyze startup time
 	use 'tweekmonster/startuptime.vim'
@@ -227,6 +112,96 @@ local function usePlugins(use, use_rocks)
 	-- Training plugins
 	-- use 'tjdevries/train.nvim'
 	-- use 'ThePrimeagen/vim-be-good'
+
+	-- Quick movement
+	-- use { 'justinmk/vim-sneak', config = [[require 'config.sneak']] }
+	use { 'unblevable/quick-scope', config = [[require 'config.quickscope']] }
+	use 'michaeljsmith/vim-indent-object'
+
+	-- Smooth smooth scrolling
+	-- use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }
+	use 'psliwka/vim-smoothie'
+
+	-- Commenting
+	use {
+		'terrortylor/nvim-comment',
+		config = [[require 'config.comment']],
+		requires = 'JoosepAlviste/nvim-ts-context-commentstring'
+	}
+
+	-- Color code colorizer
+	use { 'norcalli/nvim-colorizer.lua', config = [[require 'config.colorizer']] }
+
+	-- Fuzzy file finder
+	use {
+		'nvim-telescope/telescope.nvim',
+		config = [[require 'config.telescope']],
+		requires = {
+			'nvim-lua/plenary.nvim',
+			'nvim-treesitter/nvim-treesitter',
+			'kyazdani42/nvim-web-devicons',
+			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+		}
+	}
+
+	-- Align characters vertically
+	use 'godlygeek/tabular'
+
+	-- Used for loading project specific code styles
+	use 'editorconfig/editorconfig-vim'
+
+	-- Provides mappings for working with symbols like (), {}, [], etc.
+	use 'tpope/vim-surround'
+
+	-- Allow repeating
+	use 'tpope/vim-repeat'
+
+	-- GLSL language support
+	use 'tikhomirov/vim-glsl'
+
+	-- Treesitter
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		config = [[require 'config.treesitter']],
+		run = function() require('nvim-treesitter.install').update{ with_sync = true } end
+	}
+	use {
+		'nvim-treesitter/playground',
+		requires = 'nvim-treesitter/nvim-treesitter',
+		cmd = "TSPlaygroundToggle"
+	}
+
+	-- Dev icons
+	use {'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]}
+
+	-- Zen mode
+	use { 'folke/zen-mode.nvim', config = [[require 'config.zen-mode']] }
+	use {
+		'folke/twilight.nvim',
+		requires = 'folke/zen-mode.nvim',
+		config = [[require 'config.twilight']]
+	}
+
+	-- File browser
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = [[require 'config.nvim-tree']]
+	}
+	-- use {
+	-- 	'lambdalisue/fern.vim',
+	-- 	config = [[require 'config.fern']],
+	-- 	requires = {
+	-- 		'antoinemadec/FixCursorHold.nvim',
+	-- 		'lambdalisue/fern-hijack.vim',
+	-- 		{'lambdalisue/fern-renderer-nerdfont.vim', config = [[vim.g["fern#renderer"] = "nerdfont"]]},
+	-- 		'lambdalisue/nerdfont.vim'
+	-- 	}
+	-- }
+	-- alternatives:
+	-- use 'kyazdani42/nvim-tree.lua'
+	-- use 'zgpio/tree.nvim'
+	-- use 'tpope/vim-vinegar'
 end
 
 -- Register custom commands for plugin manager
@@ -263,6 +238,9 @@ local function init()
 
 	-- Reset plugins if already loaded
 	packer.reset()
+
+	-- Packer can manage itself
+	packer.use 'wbthomason/packer.nvim'
 
 	-- Use plugins
 	usePlugins(packer.use, packer.use_rocks)
