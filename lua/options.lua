@@ -74,7 +74,7 @@ opt('colorcolumn', '100')
 
 -- Display relative and absolute line numbers
 opt('number', true, window)
-opt('relativenumber', false, window)
+opt('relativenumber', true, window)
 
 -- Recovery
 opt('undofile', true, buffer)
