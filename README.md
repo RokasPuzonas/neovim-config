@@ -17,3 +17,4 @@ git update-index --assume-unchanged lua/plugins-local.lua
 #endif // FOOBAR
 // The text "FOOBAR" above should update when the paring `#ifdef` updates
 ```
+* Correctly indent `#ifdef` blocks
