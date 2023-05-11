@@ -86,6 +86,23 @@ if fzfPlugin and fzfPlugin.loaded then
 	telescope.load_extension('fzf')
 end
 
+local function get_vtext()
+	local prev_regv = vim.fn.getreg('v')
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg("v", prev_regv)
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ""
+	end
+end
+
+local function escape_sed_symbols(text)
+	return text:gsub("[.()%[%]]", "\\%1")
+end
 
 local keymaps = {
 	-- Search project files
@@ -98,7 +115,13 @@ local keymaps = {
 	{"<leader>ce", edit_config, description = "Edit neovim config" },
 
 	-- Grep string
-	{ "<leader>fw", function() builtin.live_grep() end, description = "Grep" },
+	{ "<leader>fw", {
+		n = function() builtin.live_grep() end,
+		v = function(a)
+			local text = escape_sed_symbols(get_vtext())
+			builtin.live_grep{ default_text = text }
+		end
+	}, description = "Grep" },
 
 	-- Change colorscheme
 	{ "<leader>cs", function() builtin.colorscheme() end, description = "Change colorscheme" },
