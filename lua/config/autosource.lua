@@ -1,7 +1,7 @@
 return {
 	'jenterkin/vim-autosource',
 	config = function()
-		local user = os.getenv("USER")
-		vim.g.autosource_hashdir = '/home/'..user..'/.cache/vim-autosource/hashes'
+		local data = vim.fn.stdpath("data")
+		vim.g.autosource_hashdir = data .. '/vim-autosource/hashes'
 	end
 }

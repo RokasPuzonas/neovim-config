@@ -42,7 +42,7 @@ return function(use)
 			"nvim-treesitter/nvim-treesitter",
 			"kyazdani42/nvim-web-devicons",
 			"nvim-telescope/telescope-ui-select.nvim",
-			{"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+			{"nvim-telescope/telescope-fzf-native.nvim", run = "make", disable = vim.fn.has("win32")}
 		},
 		load_config = true
 	}
