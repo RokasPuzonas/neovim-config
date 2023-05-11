@@ -126,7 +126,7 @@ local function usePlugins(use, use_rocks)
 	-- use { 'justinmk/vim-sneak', config = [[require 'config.sneak']] }
 	use { 'unblevable/quick-scope', config = [[require 'config.quickscope']] }
 	use 'michaeljsmith/vim-indent-object'
-	use { 'ggandor/leap.nvim', config=[[require('leap').add_default_mappings()]]}
+	use { 'ggandor/leap.nvim', config=[[require 'config.leap']]}
 
 	-- Smooth smooth scrolling
 	-- use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }

@@ -54,6 +54,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	group = vim.api.nvim_create_augroup("MyTermOpen", { clear = true }),
 	pattern = "*.lua",
 	callback = function()
-		vim.api.nvim_cmd({ cmd = "abb", args = {"!=", "~="}}, {})
+		vim.api.nvim_cmd({ cmd = "abb", args = {"<buffer>", "!=", "~="}}, {})
 	end
 })
