@@ -50,6 +50,9 @@ map('n', '<leader>fw', [[:lua require('telescope.builtin').live_grep()<cr>]], si
 -- Change colorscheme
 map('n', '<leader>cs', [[:lua require('telescope.builtin').colorscheme()<cr>]], silent)
 
+-- See help tags
+map('n', '<leader>fh', [[:lua require('telescope.builtin').help_tags()<cr>]], silent)
+
 telescope.setup{
 	defaults = {
 		buffer_previewer_maker = sizelimit_maker,
@@ -68,6 +71,9 @@ telescope.setup{
 		marks = {
       theme = "dropdown",
     },
+		help_tags = {
+      theme = "dropdown",
+		},
 		oldfiles = {
       theme = "dropdown",
     },

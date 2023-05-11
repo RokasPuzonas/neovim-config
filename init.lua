@@ -22,10 +22,10 @@ for _, name in ipairs(disabled_built_ins) do
   g['loaded_' .. name] = 1
 end
 
-require("impatient")
 require("plugins")
 require("options")
 require("bindings")
+require("pludin-dev")
 
 -- Misc features
 require("highlight-yank")

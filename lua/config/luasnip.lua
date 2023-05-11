@@ -2,10 +2,11 @@ local ls = require("luasnip")
 local capture = require("utils.capture")
 local s = ls.snippet
 local sn = ls.snippet_node
+local fmt = require("luasnip.extras.fmt").fmt
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
-local choice = ls.choice_node
+local c = ls.choice_node
 local d = ls.dynamic_node
 
 local function getCurrentYear()
@@ -19,6 +20,18 @@ local function getGitUsername()
 	end
 	return stdout
 end
+
+ls.config.set_config {
+	history = true,
+	updateevents = "TextChanged,TextChangedI",
+	enable_autosnippets = true
+}
+
+vim.keymap.set({"i"}, "<c-l>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end)
 
 ls.add_snippets("all", {
 	s("MIT", {
@@ -52,4 +65,16 @@ ls.add_snippets("all", {
 			"SOFTWARE.",
 		}
 	})
+})
+
+ls.add_snippets("lua", {
+	s("req",
+		fmt([[local {} = require("{}")]], {
+			f(function(module_name)
+				local parts = vim.split(module_name[1][1], ".", true)
+				return (parts[#parts] or ""):gsub("-", "_")
+			end, { 1 }),
+			i(1)
+		})
+	)
 })

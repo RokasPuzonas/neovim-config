@@ -127,7 +127,7 @@ function M.get_capabilities()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	if packer_plugins['cmp-nvim-lsp'] and packer_plugins['cmp-nvim-lsp'].loaded then
-		capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+		capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 	end
 
 	return capabilities
