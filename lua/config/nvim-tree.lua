@@ -7,3 +7,4 @@ require("nvim-tree").setup{
 }
 
 map("n", "<leader>e", ":NvimTreeToggle<CR>", {silent = true})
+map("n", "<leader>f", ":NvimTreeFindFileToggle<CR>", {silent = true})
