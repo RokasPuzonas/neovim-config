@@ -128,7 +128,7 @@ local function usePlugins(use, use_rocks)
 	use 'tpope/vim-eunuch'
 
 	-- Snippets
-	use 'L3MON4D3/LuaSnip'
+	use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', config = [[require 'config.luasnip']] }
 
 	-- Movement utilities
 	use 'tpope/vim-unimpaired'
