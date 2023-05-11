@@ -66,10 +66,7 @@ opt('inccommand', 'nosplit')
 -- Always keep at least 8 blank lines below the last line
 opt('scrolloff', 8)
 
--- Draw a line on the 80 character mark for reference
--- My laptop screen is pretty small so it's 80 so that 2 splits can fit
--- If you have a wider monitor go ahead and use 100 or 120.
-opt('colorcolumn', '140')
+opt('colorcolumn', '110')
 
 -- Break lines
 -- opt('textwidth', 80)
@@ -83,6 +80,7 @@ opt('undofile', true, buffer)
 
 -- Mouse support
 opt('mouse', 'nivh')
+opt('mousemodel', 'extend')
 
 -- Auto sign column
 opt('signcolumn', 'auto:1', window)
@@ -98,7 +96,7 @@ opt('foldmethod', 'indent')
 opt('foldlevelstart', 99)
 
 -- Identation/Tab settings
-local tab_size = 2
+local tab_size = 4
 opt('expandtab', false, buffer)
 opt('smartindent', true, buffer)
 opt('shiftwidth', tab_size, buffer)
