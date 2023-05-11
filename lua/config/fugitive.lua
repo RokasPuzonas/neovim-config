@@ -1,3 +1,6 @@
-local map = require 'utils.map'
-
-map('n', '<leader>gg', ':G<cr>', { silent = true })
+return {
+	'tpope/vim-fugitive',
+	config = function ()
+		vim.keymap.set('n', '<leader>gg', ':G<cr>', { silent = true })
+	end
+}

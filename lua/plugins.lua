@@ -1,16 +1,87 @@
 -- TODO: Add minimal plugin mode. Disables all plugins which are not super
 -- important, to get better performance.
 
----@diagnostic disable-next-line: unused-local
-local function usePlugins(use, use_rocks)
-	-- Toggle terminal
-	use { 'akinsho/toggleterm.nvim', tag = '*', load_config=true }
+return function(use)
+	local function use_config(name)
+		use(require(("config.%s"):format(name)))
+	end
 
-	-- Colorize ANSI codes
-	use { 'm00qek/baleia.nvim', tag = 'v1.2.0', config=[[require('config.baleia')]] }
+	use_config "toggleterm"
+	use_config "baleia"
+	use_config "todo-comments"
+	use_config "legendary"
+	use_config "dressing"
+	use_config "move"
+	use_config "gitblame"
+	use_config "based"
+	use_config "lspsignature"
+	use_config "lsputils"
+	use_config "luasnip"
+	use_config "trouble"
+	use_config "fugitive"
+	use_config "gitsigns"
+	use_config "nvim-tree"
+	use_config "autosource"
+	use_config "tidy"
+	use_config "quickscope"
+	use_config "leap"
+	use_config "comment"
+	use_config "colorizer"
+	use_config "devicons"
+	use_config "treesitter"
+	use_config "ts-playground"
+
+	use {
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"kyazdani42/nvim-web-devicons",
+			"nvim-telescope/telescope-ui-select.nvim",
+			{"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+		},
+		load_config = true
+	}
+
+	use {
+		"neovim/nvim-lspconfig",
+		config_name = "lspconfig"
+	}
+
+	use {
+		'williamboman/nvim-lsp-installer',
+		requires = 'neovim/nvim-lspconfig',
+		config_name = "lspinstaller"
+	}
+
+	use {
+		"nvim-lualine/lualine.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		load_config = true
+	}
+
+	use {
+		'rafcamlet/nvim-luapad',
+		config_name = "luapad"
+	}
+
+	use "tpope/vim-eunuch"
+	use "christoomey/vim-tmux-navigator"
+	use "eandrju/cellular-automaton.nvim"
+	use "tweekmonster/startuptime.vim"
+	use "tpope/vim-unimpaired"
+	use { "sindrets/diffview.nvim", requires = 'nvim-lua/plenary.nvim' }
+	use "wellle/targets.vim"
+	use "michaeljsmith/vim-indent-object"
+	use "psliwka/vim-smoothie"
+	use "godlygeek/tabular"
+	use "editorconfig/editorconfig-vim"
+	use "tpope/vim-surround"
+	use "tpope/vim-repeat"
+	use "tikhomirov/vim-glsl"
 
 	-- Debugger
-	use { 'mfussenegger/nvim-dap', config_name="dap" }
+	use { "mfussenegger/nvim-dap", config_name="dap" }
 	use { "rcarriga/nvim-dap-ui", requires = "mfussenegger/nvim-dap", config=[[require('dapui').setup()]] }
 	use 'simrat39/rust-tools.nvim'
 	use {
@@ -18,46 +89,6 @@ local function usePlugins(use, use_rocks)
 		requires = {"mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter"},
 		config=[[require('nvim-dap-virtual-text')]]
 	}
-
-	-- Git blame
-	use { 'f-person/git-blame.nvim', config_name="gitblame" }
-
-	use { 'trmckay/based.nvim', load_config = true }
-
-	-- Seemless pane switching betwen tmux and vim
-	use 'christoomey/vim-tmux-navigator'
-
-	-- UNIX commands
-	use 'tpope/vim-eunuch'
-
-	use {'rafcamlet/nvim-luapad', config_name = "luapad"}
-
-	use { 'fedepujol/move.nvim', load_config=true }
-
-	-- fun
-	use {'eandrju/cellular-automaton.nvim', load_config = true}
-
-	-- Movement utilities
-	use 'tpope/vim-unimpaired'
-
-	-- LSP
-	use { 'neovim/nvim-lspconfig', config_name = "lspconfig" }
-	use {
-		'williamboman/nvim-lsp-installer',
-		requires = 'neovim/nvim-lspconfig',
-		config_name = "lspinstaller"
-	}
-
-	-- LSP utils
-	use {"ray-x/lsp_signature.nvim", config_name = "lspsignature"}
-	use {
-		'RishabhRD/nvim-lsputils',
-		config_name = "lsputils",
-		requires = 'RishabhRD/popfix'
-	}
-
-	-- Snippets
-	use { 'L3MON4D3/LuaSnip', config_name = "luasnip" }
 
 	-- Completion
 	use { 'onsails/lspkind-nvim' }
@@ -76,231 +107,20 @@ local function usePlugins(use, use_rocks)
 	use {'hrsh7th/cmp-cmdline', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp', requires = {'L3MON4D3/LuaSnip', 'nvim-cmp'}}
 
-	-- Better diagnostics viewer
-	use {
-		'folke/trouble.nvim',
-		requires = 'kyazdani42/nvim-web-devicons',
-		load_config = true
-	}
-
-	-- Color themes
-	use 'srcery-colors/srcery-vim'
-	-- use 'morhetz/gruvbox'
-	-- use 'tomasr/molokai'
-	-- use 'Mangeshrex/uwu.vim'
-	-- use 'ayu-theme/ayu-vim'
-	-- use 'sickill/vim-monokai'
-	-- use 'joshdick/onedark.vim'
-	-- use 'mswift42/vim-themes'
-	-- use 'squarefrog/tomorrow-night.vim'
-	-- use 'fnune/base16-vim'
-
-	-- Text object target
-	use 'wellle/targets.vim'
-
-	-- Git integration
-	use { 'tpope/vim-fugitive', config_name = "fugitive" }
-	use {
-		'lewis6991/gitsigns.nvim',
-		requires = 'nvim-lua/plenary.nvim',
-		load_config = true
-		-- tag = 'release' -- To use the latest release
-	}
-
-	-- Refactoring
-	-- use {
-	-- 	"ThePrimeagen/refactoring.nvim",
-	-- 	requires = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-treesitter/nvim-treesitter"
-	-- 	},
-	-- 	disable = true,
-	-- 	config = [[require 'config.refactoring']]
-	-- }
-
-	-- Analyze startup time
-	use 'tweekmonster/startuptime.vim'
-
-	-- Status line and tab line
-	-- use { 'itchyny/lightline.vim', config = [[require 'config.lightline']]}
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = 'kyazdani42/nvim-web-devicons',
-		load_config = true
-	}
-
-	-- Load project specific settings from exrc
-	use { 'jenterkin/vim-autosource', config_name = "autosource" }
-
-	-- Remove spaces at end of lines
-	use{ "mcauley-penney/tidy.nvim", config = [[require("tidy").setup()]] }
+	do -- Color themes
+		use 'srcery-colors/srcery-vim'
+		-- use 'morhetz/gruvbox'
+		-- use 'tomasr/molokai'
+		-- use 'Mangeshrex/uwu.vim'
+		-- use 'ayu-theme/ayu-vim'
+		-- use 'sickill/vim-monokai'
+		-- use 'joshdick/onedark.vim'
+		-- use 'mswift42/vim-themes'
+		-- use 'squarefrog/tomorrow-night.vim'
+		-- use 'fnune/base16-vim'
+	end
 
 	-- Training plugins
 	-- use 'tjdevries/train.nvim'
 	-- use 'ThePrimeagen/vim-be-good'
-
-	-- Quick movement
-	-- use { 'justinmk/vim-sneak', config = [[require 'config.sneak']] }
-	use { 'unblevable/quick-scope', config_name = "quickscope" }
-	use 'michaeljsmith/vim-indent-object'
-	use { 'ggandor/leap.nvim', load_config = "leap"}
-
-	-- Smooth smooth scrolling
-	-- use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }
-	use 'psliwka/vim-smoothie'
-
-	-- Commenting
-	use {
-		'terrortylor/nvim-comment',
-		config_name = "comment",
-		requires = 'JoosepAlviste/nvim-ts-context-commentstring'
-	}
-
-	-- Color code colorizer
-	use { 'norcalli/nvim-colorizer.lua', config_name = "colorizer" }
-
-	-- Fuzzy file finder
-	use {
-		'nvim-telescope/telescope.nvim',
-		load_config = true,
-		requires = {
-			'nvim-lua/plenary.nvim',
-			'nvim-treesitter/nvim-treesitter',
-			'kyazdani42/nvim-web-devicons',
-			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-		}
-	}
-
-	-- Align characters vertically
-	use 'godlygeek/tabular'
-
-	-- Used for loading project specific code styles
-	use 'editorconfig/editorconfig-vim'
-
-	-- Provides mappings for working with symbols like (), {}, [], etc.
-	use 'tpope/vim-surround'
-
-	-- Allow repeating
-	use 'tpope/vim-repeat'
-
-	-- GLSL language support
-	use 'tikhomirov/vim-glsl'
-
-	-- Treesitter
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		config = [[require 'config.treesitter']],
-		run = function() require('nvim-treesitter.install').update{ with_sync = true } end
-	}
-	use {
-		'nvim-treesitter/playground',
-		requires = 'nvim-treesitter/nvim-treesitter',
-		cmd = "TSPlaygroundToggle"
-	}
-
-	-- Dev icons
-	use {'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]}
-
-	-- File browser
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = 'kyazdani42/nvim-web-devicons',
-		config = [[require 'config.nvim-tree']]
-	}
-	-- use {
-	-- 	'lambdalisue/fern.vim',
-	-- 	config = [[require 'config.fern']],
-	-- 	requires = {
-	-- 		'antoinemadec/FixCursorHold.nvim',
-	-- 		'lambdalisue/fern-hijack.vim',
-	-- 		{'lambdalisue/fern-renderer-nerdfont.vim', config = [[vim.g["fern#renderer"] = "nerdfont"]]},
-	-- 		'lambdalisue/nerdfont.vim'
-	-- 	}
-	-- }
-	-- alternatives:
-	-- use 'kyazdani42/nvim-tree.lua'
-	-- use 'zgpio/tree.nvim'
-	-- use 'tpope/vim-vinegar'
 end
-
--- Register custom commands for plugin manager
-vim.cmd [[command! -bang -nargs=+ -complete=customlist,v:lua.require'plugins'.loader_complete PackerLoad lua require('plugins').loader(<f-args>, '<bang>' == '!')]]
-vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
-vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
-vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
-vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
-vim.cmd [[command! PackerCompile source lua/plugins.lua | packadd packer.nvim | lua require('plugins').compile()]]
-
--- Bootstrap packer.nvim. If packer.nvim is not installed, install it.
-local function bootstrap()
-	local fn = vim.fn
-	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-	if fn.empty(fn.glob(install_path)) > 0 then
-		return fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-	end
-end
-
-local function create_custom_use(use)
-	return function (opts)
-		if type(opts) == "string" then
-			use(opts)
-			return opts
-		elseif type(opts) == "table" then
-			if opts.load_config then
-				local name = vim.split(opts[1], "/")[2]
-				if name:match("%.nvim$") then
-					name = name:sub(1, -6)
-				end
-				opts.config_name = name
-			end
-			if opts.config_name then
-				opts.config = ("require('config.%s')"):format(opts.config_name)
-			end
-			use(opts)
-
-			return opts[1]
-		else
-			error("What are you doing???")
-		end
-	end
-end
-
-local packer = nil
-local function init()
-	-- Perform bootstrap
-	local packer_bootstrap = bootstrap()
-
-	-- Initialize packer
-	if packer == nil then
-		packer = require 'packer'
-		local util = require 'packer.util'
-		packer.init {
-			compile_path = util.join_paths(vim.fn.stdpath('config'), 'plugin', 'packer-compiled.lua'),
-			disable_commands = true
-		}
-	end
-
-	-- Reset plugins if already loaded
-	packer.reset()
-
-	-- Packer can manage itself
-	packer.use 'wbthomason/packer.nvim'
-
-	-- Use plugins
-	usePlugins(create_custom_use(packer.use), packer.use_rocks)
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if packer_bootstrap then
-		require('packer').sync()
-	end
-end
-
-local plugins = setmetatable({}, {
-	__index = function(_, key)
-		init()
-		return packer[key]
-	end,
-})
-
-return plugins

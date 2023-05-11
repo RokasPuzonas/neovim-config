@@ -6,7 +6,7 @@ local silent = {silent = true}
 map('n', 'Q', '<nop>')
 
 -- Save file
-map('n', '<C-s>', ':w<cr>')
+map('n', '<C-s>', ':w<cr>', silent)
 
 -- Paste from register and not replace it
 -- map('x', '<leader>p', '"_dP')

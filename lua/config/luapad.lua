@@ -1,5 +1,5 @@
 local pattern = "^/tmp/.*/%d+_Luapad%.lua$"
-local group = vim.api.nvim_create_augroup('LuaPadFiletype', {clear=true})
+local group = vim.api.nvim_create_augroup("LuaPadFiletype", {clear=true})
 vim.api.nvim_create_autocmd("FileType", {
 	group = group,
 	callback = function(data)

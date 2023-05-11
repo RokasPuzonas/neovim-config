@@ -1,7 +1,6 @@
-local lspconfig_config = require 'config.lspconfig'
-local lsp_installer = require 'nvim-lsp-installer'
-local lsp_installer_servers = require'nvim-lsp-installer.servers'
-local M = {}
+local lspconfig_config = require('config.lspconfig')
+local lsp_installer = require('nvim-lsp-installer')
+local lsp_installer_servers = require('nvim-lsp-installer.servers')
 
 -- local autoinstall_servers = {"sumneko_lua", "efm"}
 local autoinstall_servers = {"sumneko_lua"}
@@ -17,8 +16,8 @@ local capabilities = lspconfig_config.get_capabilities()
 for _, server in ipairs(lsp_installer.get_installed_servers()) do
 	local opts = {
 		root_dir = function()
-      return vim.fn.getcwd()
-    end,
+			return vim.fn.getcwd()
+		end,
 		init_options = lspconfig_config.get_server_init_options(server.name),
 		on_attach = lspconfig_config.on_attach,
 		on_init = lspconfig_config.on_init,
@@ -38,5 +37,3 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
 	server:setup(opts)
 	::continue::
 end
-
-return M
