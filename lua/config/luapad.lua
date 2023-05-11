@@ -8,3 +8,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 	end
 })
+
+require("legendary").commands{
+	{ ":Luapad", description = "Open interactive lua" },
+	{ ":LuaRun", description = "Run lua from current buffer" }
+}

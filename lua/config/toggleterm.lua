@@ -4,6 +4,8 @@ return {
 	config = function()
 		require('toggleterm').setup()
 
-		vim.keymap.set("n", "<leader>t", ":ToggleTerm<CR>")
+		require("legendary").keymap{
+			"<leader>t", ":ToggleTerm<CR>", description = "Toggle terminal", opts = { silent = true }
+		}
 	end
 }

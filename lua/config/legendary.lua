@@ -1,12 +1,11 @@
 return {
 	'mrjones2014/legendary.nvim',
+	requires = 'stevearc/dressing.nvim',
 	config = function()
-		vim.keymap.set("n", "<leader>l", ":Legendary<cr>", {silent = true})
-
 		require("legendary").setup{
 			include_legendary_cmds = false,
-			commands = {
-				{ ":TodoTelescope", description = "Show TODO's in telescope" }
+			keymaps = {
+				{"<leader>l", ":Legendary<cr>", description = "Open this help menu"}
 			}
 		}
 	end

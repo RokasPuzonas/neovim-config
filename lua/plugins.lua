@@ -9,8 +9,8 @@ return function(use)
 	use_config "toggleterm"
 	use_config "baleia"
 	use_config "todo-comments"
-	use_config "legendary"
 	use_config "dressing"
+	use_config "legendary"
 	use_config "move"
 	use_config "gitblame"
 	use_config "based"
@@ -30,6 +30,7 @@ return function(use)
 	use_config "devicons"
 	use_config "treesitter"
 	use_config "ts-playground"
+	use_config "diffview"
 
 	use {
 		"nvim-telescope/telescope.nvim",
@@ -70,7 +71,6 @@ return function(use)
 	use "eandrju/cellular-automaton.nvim"
 	use "tweekmonster/startuptime.vim"
 	use "tpope/vim-unimpaired"
-	use { "sindrets/diffview.nvim", requires = 'nvim-lua/plenary.nvim' }
 	use "wellle/targets.vim"
 	use "michaeljsmith/vim-indent-object"
 	use "psliwka/vim-smoothie"

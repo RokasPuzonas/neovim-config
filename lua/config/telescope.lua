@@ -87,22 +87,29 @@ if fzfPlugin and fzfPlugin.loaded then
 end
 
 
+local keymaps = {
+	-- Search project files
+	{ "<C-p>", project_files, description = "Open git files" },
+
+	-- Search files from current working directory
+	{ "<leader>p", function() builtin.find_files() end, description = "Open files" },
+
+	-- Edit neovim config
+	{"<leader>ce", edit_config, description = "Edit neovim config" },
+
+	-- Grep string
+	{ "<leader>fw", function() builtin.live_grep() end, description = "Grep" },
+
+	-- Change colorscheme
+	{ "<leader>cs", function() builtin.colorscheme() end, description = "Change colorscheme" },
+
+	-- See help tags
+	{ "<leader>fh", function() builtin.help_tags() end, description = "Search help tags" }
+}
+
 local silent = {silent = true}
+for _, keymap in ipairs(keymaps) do
+	keymap.opts = silent
+end
 
--- Search project files
-vim.keymap.set("n", "<C-p>", project_files, silent)
-
--- Search files from current working directory
-vim.keymap.set("n", "<leader>p", function() builtin.find_files() end, silent)
-
--- Edit neovim config
-vim.keymap.set("n", "<leader>ce", edit_config, silent)
-
--- Find string
-vim.keymap.set("n", "<leader>fw", function() builtin.live_grep() end, silent)
-
--- Change colorscheme
-vim.keymap.set("n", "<leader>cs", function() builtin.colorscheme() end, silent)
-
--- See help tags
-vim.keymap.set("n", "<leader>fh", function() builtin.help_tags() end, silent)
+require("legendary").keymaps(keymaps)

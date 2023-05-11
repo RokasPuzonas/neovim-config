@@ -11,7 +11,9 @@ return {
 			},
 		}
 
-		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {silent = true})
-		vim.keymap.set("n", "<leader>f", ":NvimTreeFindFileToggle<CR>", {silent = true})
+		require("legendary").keymaps{
+			{"<leader>e", ":NvimTreeToggle<CR>", description = "Toggle file tree", {silent = true}},
+			{"<leader>f", ":NvimTreeFindFileToggle<CR>", description = "Show file in tree", {silent = true}}
+		}
 	end
 }

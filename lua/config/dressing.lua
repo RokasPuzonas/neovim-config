@@ -1,5 +1,6 @@
 return {
-	'stevearc/dressing.nvim',
+	"stevearc/dressing.nvim",
+	requires = "nvim-telescope/telescope.nvim",
 	config = function()
 		require('dressing').setup({
 			select = {
