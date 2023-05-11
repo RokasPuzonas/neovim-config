@@ -1,16 +1,16 @@
-local M = {}
+local cfg = {}
 
 -- debounce_text_changes = delay, between changing something and lsp updating
-M.flags = { debounce_text_changes = 150 }
+cfg.flags = { debounce_text_changes = 150 }
 
 local general_settings = { }
-M.server_init_options = {
+cfg.server_init_options = {
 	efm = {
 		documentFormatting = true
 	}
 }
 
-M.server_settings = {
+cfg.server_settings = {
 	efm = {
 		rootMarkers = {".git/"},
 		languages = {
@@ -84,19 +84,19 @@ M.server_settings = {
 }
 
 -- Apply general settings for each server
-for _, settings in ipairs(M.server_settings) do
-	M.server_settings = vim.tbl_deep_extend("keep", settings, general_settings)
+for _, settings in ipairs(cfg.server_settings) do
+	cfg.server_settings = vim.tbl_deep_extend("keep", settings, general_settings)
 end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 ---@diagnostic disable-next-line: unused-local
-function M.on_attach(client, bufnr)
-  -- Mappings.
-  local opts = { noremap = true, silent = true, buffer = bufnr}
+function cfg.on_attach(client, bufnr)
+	-- Mappings.
+	local opts = { noremap = true, silent = true, buffer = bufnr}
 
-  -- local function keymap(mode, lhs, rhs) vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	-- local function keymap(mode, lhs, rhs) vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts) end
+	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
 	require("legendary").keymaps{
 		{
@@ -114,22 +114,22 @@ function M.on_attach(client, bufnr)
 		}
 	}
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+	-- Enable completion triggered by <c-x><c-o>
+	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
 
 	-- Conflicts with movement between panes
-  -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+	-- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
-  -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-  -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-  -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
-  -- buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-  -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-  -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-  -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+	-- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
+	-- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
+	-- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+	-- buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+	-- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+	-- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+	-- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+	-- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 
 	-- " auto-format
 	-- autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
@@ -137,7 +137,7 @@ function M.on_attach(client, bufnr)
 	-- autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 end
 
-function M.get_capabilities()
+function cfg.get_capabilities()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	if packer_plugins['cmp-nvim-lsp'] and packer_plugins['cmp-nvim-lsp'].loaded then
@@ -147,7 +147,7 @@ function M.get_capabilities()
 	return capabilities
 end
 
-function M.on_init(initialize_params, config)
+function cfg.on_init(initialize_params, config)
 	-- print("lsp init")
 
 	-- TODO: Load settings from ".lspconfig.json" for each projects settings
@@ -155,18 +155,12 @@ function M.on_init(initialize_params, config)
 	-- https://github.com/neovim/nvim-lspconfig/wiki/Project-local-settings
 end
 
-function M.get_server_settings(name)
-	return M.server_settings[name]
+function cfg.get_server_settings(name)
+	return cfg.server_settings[name]
 end
 
-function M.get_server_init_options(name)
-	return M.server_init_options[name]
+function cfg.get_server_init_options(name)
+	return cfg.server_init_options[name]
 end
 
----@diagnostic disable-next-line: empty-block
-if packer_plugins['nvim-lsp-installer'] and packer_plugins['nvim-lsp-installer'].loaded then
-	-- local lspconfig = require('lspconfig')
-	-- TODO: Manually do "server:setup{}" if lspinstaller is not loaded
-end
-
-return M
+return cfg

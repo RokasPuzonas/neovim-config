@@ -45,14 +45,19 @@ return function(use)
 	}
 
 	use {
-		"neovim/nvim-lspconfig",
-		config_name = "lspconfig"
-	}
-
-	use {
-		'williamboman/nvim-lsp-installer',
+		"williamboman/mason.nvim",
 		requires = 'neovim/nvim-lspconfig',
-		config_name = "lspinstaller"
+		config_name = "mason"
+	}
+	use {
+		"williamboman/mason-lspconfig.nvim",
+		requires = "williamboman/mason.nvim",
+		config_name = "mason-lspconfig"
+	}
+	use {
+		"neovim/nvim-lspconfig",
+		requires = "williamboman/mason-lspconfig.nvim",
+		--config_name = "lspconfig"
 	}
 
 	use {

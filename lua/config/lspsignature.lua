@@ -11,8 +11,8 @@ return {
 			}
 		}
 
-		require("legendary").keymap{
-			"<super>x", lsp_signature.toggle_float_win, description="Toggle signature float"
-		}
+		-- require("legendary").keymap{
+		-- 	"<super>x", lsp_signature.toggle_float_win, description="Toggle signature float"
+		-- }
 	end
 }
