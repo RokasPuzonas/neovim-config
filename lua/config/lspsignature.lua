@@ -12,7 +12,7 @@ return {
 		}
 
 		require("legendary").keymap{
-			"<C-x>", lsp_signature.toggle_float_win, description="Toggle signature float"
+			"<super>x", lsp_signature.toggle_float_win, description="Toggle signature float"
 		}
 	end
 }
