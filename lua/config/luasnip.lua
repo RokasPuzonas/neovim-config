@@ -27,6 +27,18 @@ ls.config.set_config {
 	enable_autosnippets = true
 }
 
+vim.keymap.set({"i", "s"}, "<c-k>", function()
+	if ls.expand_or_jumpable() then
+		ls.expand_or_jump()
+	end
+end, { silent = true })
+
+vim.keymap.set({ "i", "s" }, "<c-j>", function()
+	if ls.jumpable(-1) then
+		ls.jump(-1)
+	end
+end, { silent = -1 })
+
 vim.keymap.set({"i"}, "<c-l>", function()
 	if ls.choice_active() then
 		ls.change_choice(1)
