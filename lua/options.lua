@@ -126,3 +126,15 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_option(data.buf, "commentstring", "// %s")
 	end
 })
+
+-- Indent with spaces for vue files
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("set-vue-expandtab", { clear = true }),
+	pattern = "vue",
+	callback = function(data)
+		vim.api.nvim_buf_set_option(data.buf, "expandtab", true)
+		vim.api.nvim_buf_set_option(data.buf, 'shiftwidth', 2)
+		vim.api.nvim_buf_set_option(data.buf, 'tabstop', 2)
+		vim.api.nvim_buf_set_option(data.buf, 'softtabstop', 2)
+	end
+})
