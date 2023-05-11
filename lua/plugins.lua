@@ -18,7 +18,7 @@ return function(use)
 	use_config "lsputils"
 	use_config "luasnip"
 	use_config "trouble"
-	use_config "fugitive"
+	use_config "lazygit"
 	use_config "gitsigns"
 	use_config "nvim-tree"
 	use_config "autosource"
@@ -31,6 +31,7 @@ return function(use)
 	use_config "treesitter"
 	use_config "ts-playground"
 	use_config "diffview"
+	use_config "git-conflict"
 
 	use {
 		"nvim-telescope/telescope.nvim",
