@@ -12,7 +12,7 @@ for id, name in ipairs(query.captures) do
 	capture_lookup[name] = id
 end
 
-local function formatMacros()
+local function format_macros()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local winnr = vim.api.nvim_get_current_win()
 
@@ -25,38 +25,40 @@ local function formatMacros()
 		local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line+1, false)
 		local tabstop = tonumber(vim.bo[bufnr].tabstop) or 8
 
-		for i, line in ipairs(lines) do
-			lines[i] = line:match("^(.-)%s*[\\]?$")
-		end
-
-		local line_length = 0
-		do
-			local textwidth  = vim.bo[bufnr].textwidth
-			if textwidth and textwidth ~= "" then
-				line_length = tonumber(textwidth)
+		if #lines > 2 then
+			for i, line in ipairs(lines) do
+				lines[i] = line:match("^(.-)%s*[\\]?$")
 			end
 
-			if line_length <= 0 then
-				local colorcolum = vim.wo[winnr].colorcolumn
-				if colorcolum and colorcolum ~= "" then
-					line_length = tonumber(colorcolum)
+			local line_length = 0
+			do
+				local textwidth  = vim.bo[bufnr].textwidth
+				if textwidth and textwidth ~= "" then
+					line_length = tonumber(textwidth)
+				end
+
+				if line_length <= 0 then
+					local colorcolum = vim.wo[winnr].colorcolumn
+					if colorcolum and colorcolum ~= "" then
+						line_length = tonumber(colorcolum)
+					end
+				end
+
+				if line_length <= 0 then
+					for _, line in ipairs(lines) do
+						line_length = math.max(line_length, #line+2)
+					end
 				end
 			end
 
-			if line_length <= 0 then
-				for _, line in ipairs(lines) do
-					line_length = math.max(line_length, #line+2)
-				end
+			for i = 1, #lines-1 do
+				local line = lines[i]
+				local length = #(line:gsub("\t", (" "):rep(tabstop)))
+				lines[i] = line .. (" "):rep(line_length - length-2) .. " \\"
 			end
-		end
 
-		for i = 1, #lines-1 do
-			local line = lines[i]
-			local length = #(line:gsub("\t", (" "):rep(tabstop)))
-			lines[i] = line .. (" "):rep(line_length - length-2) .. " \\"
+			vim.api.nvim_buf_set_lines(bufnr, start_line, end_line+1, false, lines)
 		end
-
-		vim.api.nvim_buf_set_lines(bufnr, start_line, end_line+1, false, lines)
 	end
 end
 
@@ -66,7 +68,7 @@ for _, cmd in ipairs{"InsertLeavePre", "BufWritePre"} do
 		group = group,
 		pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.cc"},
 		callback = function (data)
-			formatMacros()
+			format_macros()
 		end
 	})
 end
