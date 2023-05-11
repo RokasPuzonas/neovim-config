@@ -106,3 +106,9 @@ opt('softtabstop', tab_size, buffer)
 -- Place splits below and to the right by default
 opt('splitbelow', true)
 opt('splitright', true)
+
+-- Scale neovide a bit
+if vim.g.neovide then
+	vim.g.neovide_scale_factor = 0.7
+	vim.g.neovide_hide_mouse_when_typing = true
+end
