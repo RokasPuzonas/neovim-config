@@ -61,14 +61,14 @@ opt('scrolloff', 8)
 -- Draw a line on the 80 character mark for reference
 -- My laptop screen is pretty small so it's 80 so that 2 splits can fit
 -- If you have a wider monitor go ahead and use 100 or 120.
-opt('colorcolumn', '80')
+opt('colorcolumn', '140')
 
 -- Break lines
 -- opt('textwidth', 80)
 
 -- Display relative and absolute line numbers
 opt('number', true, window)
-opt('relativenumber', false, window)
+opt('relativenumber', true, window)
 
 -- Recovery
 opt('undofile', true, buffer)
