@@ -25,6 +25,7 @@ end
 require("plugins")
 require("options")
 require("bindings")
+require("pludin-dev")
 
 -- Misc features
 require("highlight-yank")
