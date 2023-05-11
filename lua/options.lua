@@ -1,4 +1,5 @@
 local opt = require 'utils.opt'
+local autocmd = require 'utils.autocmd'
 local o, wo, bo = vim.o, vim.wo, vim.bo
 local cmd = vim.cmd
 
@@ -8,6 +9,13 @@ cmd [[filetype plugin on]]
 
 local buffer = { o, bo }
 local window = { o, wo }
+
+-- Enable auto reload of changed files
+opt('autoread', true)
+autocmd("auto-reload", {
+	[[FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif]],
+	[[FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]]
+}, true)
 
 -- List of possible completion options
 opt('completeopt', 'menu,menuone,noselect')
@@ -59,9 +67,7 @@ opt('inccommand', 'nosplit')
 opt('scrolloff', 8)
 
 -- Draw a line on the 80 character mark for reference
--- My laptop screen is pretty small so it's 80 so that 2 splits can fit
--- If you have a wider monitor go ahead and use 100 or 120.
-opt('colorcolumn', '80')
+opt('colorcolumn', '100')
 
 -- Break lines
 -- opt('textwidth', 80)
