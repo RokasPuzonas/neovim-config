@@ -1,4 +1,3 @@
-local opt = require 'utils.opt'
 local g = vim.g
 local cmd = vim.cmd
 

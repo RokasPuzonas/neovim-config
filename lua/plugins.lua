@@ -4,13 +4,13 @@
 ---@diagnostic disable-next-line: unused-local
 local function usePlugins(use, use_rocks)
 	-- Toggle terminal
-	use {'akinsho/toggleterm.nvim', tag = '*', config=[[require('config.toggleterm')]]}
+	use { 'akinsho/toggleterm.nvim', tag = '*', load_config=true }
 
 	-- Colorize ANSI codes
 	use { 'm00qek/baleia.nvim', tag = 'v1.2.0', config=[[require('config.baleia')]] }
 
 	-- Debugger
-	use { 'mfussenegger/nvim-dap', config=[[require('config.dap')]]}
+	use { 'mfussenegger/nvim-dap', config_name="dap" }
 	use { "rcarriga/nvim-dap-ui", requires = "mfussenegger/nvim-dap", config=[[require('dapui').setup()]] }
 	use 'simrat39/rust-tools.nvim'
 	use {
@@ -20,7 +20,9 @@ local function usePlugins(use, use_rocks)
 	}
 
 	-- Git blame
-	use { 'f-person/git-blame.nvim', config=[[require("config.gitblame")]] }
+	use { 'f-person/git-blame.nvim', config_name="gitblame" }
+
+	use { 'trmckay/based.nvim', load_config = true }
 
 	-- Seemless pane switching betwen tmux and vim
 	use 'christoomey/vim-tmux-navigator'
@@ -28,30 +30,34 @@ local function usePlugins(use, use_rocks)
 	-- UNIX commands
 	use 'tpope/vim-eunuch'
 
+	use {'rafcamlet/nvim-luapad', config_name = "luapad"}
+
+	use { 'fedepujol/move.nvim', load_config=true }
+
+	-- fun
+	use {'eandrju/cellular-automaton.nvim', load_config = true}
+
 	-- Movement utilities
 	use 'tpope/vim-unimpaired'
 
 	-- LSP
-	use {
-		'neovim/nvim-lspconfig',
-		config = [[require 'config.lspconfig']],
-	}
+	use { 'neovim/nvim-lspconfig', config_name = "lspconfig" }
 	use {
 		'williamboman/nvim-lsp-installer',
 		requires = 'neovim/nvim-lspconfig',
-		config = [[require 'config.lspinstaller']]
+		config_name = "lspinstaller"
 	}
 
 	-- LSP utils
-	use {"ray-x/lsp_signature.nvim", config = [[require 'config.lspsignature']]}
+	use {"ray-x/lsp_signature.nvim", config_name = "lspsignature"}
 	use {
 		'RishabhRD/nvim-lsputils',
-		config = [[require 'config.lsputils']],
+		config_name = "lsputils",
 		requires = 'RishabhRD/popfix'
 	}
 
 	-- Snippets
-	use { 'L3MON4D3/LuaSnip', config = [[require 'config.luasnip']] }
+	use { 'L3MON4D3/LuaSnip', config_name = "luasnip" }
 
 	-- Completion
 	use { 'onsails/lspkind-nvim' }
@@ -60,9 +66,9 @@ local function usePlugins(use, use_rocks)
 		-- requires = 'onsails/lspkind-nvim', -- For some reason breaks with this line
 		requires = {'saadparwaiz1/cmp_luasnip'},
 		after = 'lspkind-nvim',
-		config = [[require 'config.cmp']]
+		config_name = "cmp"
 	}
-	use {'tzachar/cmp-tabnine', after = 'nvim-cmp', run='./install.sh', requires = 'hrsh7th/nvim-cmp', config = [[require 'config.tabnine']]}
+	use {'tzachar/cmp-tabnine', after = 'nvim-cmp', run='./install.sh', requires = 'hrsh7th/nvim-cmp', config_name = "tabnine"}
 	use {'hrsh7th/cmp-nvim-lsp', requires = {'hrsh7th/nvim-cmp', 'nvim-lspconfig'}}
 	use {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
 	use {'hrsh7th/cmp-buffer', after = 'nvim-cmp', requires = 'hrsh7th/nvim-cmp'}
@@ -74,7 +80,7 @@ local function usePlugins(use, use_rocks)
 	use {
 		'folke/trouble.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
-		config = [[require 'config.trouble']]
+		load_config = true
 	}
 
 	-- Color themes
@@ -93,11 +99,11 @@ local function usePlugins(use, use_rocks)
 	use 'wellle/targets.vim'
 
 	-- Git integration
-	use { 'tpope/vim-fugitive', config = [[require 'config.fugitive']] }
+	use { 'tpope/vim-fugitive', config_name = "fugitive" }
 	use {
 		'lewis6991/gitsigns.nvim',
 		requires = 'nvim-lua/plenary.nvim',
-		config = [[require 'config.gitsigns']]
+		load_config = true
 		-- tag = 'release' -- To use the latest release
 	}
 
@@ -116,10 +122,15 @@ local function usePlugins(use, use_rocks)
 	use 'tweekmonster/startuptime.vim'
 
 	-- Status line and tab line
-	use { 'itchyny/lightline.vim', config = [[require 'config.lightline']]}
+	-- use { 'itchyny/lightline.vim', config = [[require 'config.lightline']]}
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = 'kyazdani42/nvim-web-devicons',
+		load_config = true
+	}
 
 	-- Load project specific settings from exrc
-	use { 'jenterkin/vim-autosource', config = [[require 'config.autosource']] }
+	use { 'jenterkin/vim-autosource', config_name = "autosource" }
 
 	-- Remove spaces at end of lines
 	use{ "mcauley-penney/tidy.nvim", config = [[require("tidy").setup()]] }
@@ -130,9 +141,9 @@ local function usePlugins(use, use_rocks)
 
 	-- Quick movement
 	-- use { 'justinmk/vim-sneak', config = [[require 'config.sneak']] }
-	use { 'unblevable/quick-scope', config = [[require 'config.quickscope']] }
+	use { 'unblevable/quick-scope', config_name = "quickscope" }
 	use 'michaeljsmith/vim-indent-object'
-	use { 'ggandor/leap.nvim', config=[[require 'config.leap']]}
+	use { 'ggandor/leap.nvim', load_config = "leap"}
 
 	-- Smooth smooth scrolling
 	-- use { 'karb94/neoscroll.nvim', config = [[require('neoscroll').setup()]] }
@@ -141,17 +152,17 @@ local function usePlugins(use, use_rocks)
 	-- Commenting
 	use {
 		'terrortylor/nvim-comment',
-		config = [[require 'config.comment']],
+		config_name = "comment",
 		requires = 'JoosepAlviste/nvim-ts-context-commentstring'
 	}
 
 	-- Color code colorizer
-	use { 'norcalli/nvim-colorizer.lua', config = [[require 'config.colorizer']] }
+	use { 'norcalli/nvim-colorizer.lua', config_name = "colorizer" }
 
 	-- Fuzzy file finder
 	use {
 		'nvim-telescope/telescope.nvim',
-		config = [[require 'config.telescope']],
+		load_config = true,
 		requires = {
 			'nvim-lua/plenary.nvim',
 			'nvim-treesitter/nvim-treesitter',
@@ -189,14 +200,6 @@ local function usePlugins(use, use_rocks)
 
 	-- Dev icons
 	use {'kyazdani42/nvim-web-devicons', config = [[require('nvim-web-devicons').setup()]]}
-
-	-- Zen mode
-	use { 'folke/zen-mode.nvim', config = [[require 'config.zen-mode']] }
-	use {
-		'folke/twilight.nvim',
-		requires = 'folke/zen-mode.nvim',
-		config = [[require 'config.twilight']]
-	}
 
 	-- File browser
 	use {
@@ -237,6 +240,31 @@ local function bootstrap()
 	end
 end
 
+local function create_custom_use(use)
+	return function (opts)
+		if type(opts) == "string" then
+			use(opts)
+			return opts
+		elseif type(opts) == "table" then
+			if opts.load_config then
+				local name = vim.split(opts[1], "/")[2]
+				if name:match("%.nvim$") then
+					name = name:sub(1, -6)
+				end
+				opts.config_name = name
+			end
+			if opts.config_name then
+				opts.config = ("require('config.%s')"):format(opts.config_name)
+			end
+			use(opts)
+
+			return opts[1]
+		else
+			error("What are you doing???")
+		end
+	end
+end
+
 local packer = nil
 local function init()
 	-- Perform bootstrap
@@ -259,7 +287,7 @@ local function init()
 	packer.use 'wbthomason/packer.nvim'
 
 	-- Use plugins
-	usePlugins(packer.use, packer.use_rocks)
+	usePlugins(create_custom_use(packer.use), packer.use_rocks)
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
