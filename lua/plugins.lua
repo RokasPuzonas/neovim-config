@@ -19,6 +19,9 @@ local function usePlugins(use, use_rocks)
 		config=[[require('nvim-dap-virtual-text')]]
 	}
 
+	-- Git blame
+	use { 'f-person/git-blame.nvim', config=[[require("config.gitblame")]] }
+
 	-- Seemless pane switching betwen tmux and vim
 	use 'christoomey/vim-tmux-navigator'
 
