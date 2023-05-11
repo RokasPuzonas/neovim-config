@@ -25,11 +25,22 @@ local function format_macros()
 		local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line+1, false)
 		local tabstop = tonumber(vim.bo[bufnr].tabstop) or 8
 
-		if #lines > 2 then
-			for i, line in ipairs(lines) do
-				lines[i] = line:match("^(.-)%s*[\\]?$")
-			end
+		for i, line in ipairs(lines) do
+			lines[i] = line:match("^(.-)%s*[\\]?$")
+		end
 
+		while true do
+			local last_line = lines[#lines]
+			if not last_line then break end
+			if last_line:match("^%s*//") or last_line:match("^%s*/%*") or last_line:match("^%s*$") then
+				table.remove(lines, #lines)
+				end_line = end_line - 1
+			else
+				break
+			end
+		end
+
+		if #lines > 2 then
 			local line_length = 0
 			do
 				local textwidth  = vim.bo[bufnr].textwidth
