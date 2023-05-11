@@ -16,6 +16,9 @@ local function usePlugins(use, use_rocks)
 	-- Seemless pane switching betwen tmux and vim
 	use 'christoomey/vim-tmux-navigator'
 
+	-- Ansible file syntax highlighting
+	use 'pearofducks/ansible-vim'
+
 	-- Zen mode
 	use { 'folke/zen-mode.nvim', config = [[require 'config.zen-mode']] }
 	use {
