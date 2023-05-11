@@ -32,6 +32,7 @@ return function(use)
 	use_config "ts-playground"
 	use_config "diffview"
 	use_config "git-conflict"
+	use_config "ufo"
 
 	use {
 		"nvim-telescope/telescope.nvim",
