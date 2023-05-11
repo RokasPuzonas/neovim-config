@@ -6,6 +6,9 @@ local function usePlugins(use, use_rocks)
 	-- Toggle terminal
 	use {'akinsho/toggleterm.nvim', tag = '*', config=[[require('toggleterm').setup()]]}
 
+	-- Colorize ANSI codes
+	use { 'm00qek/baleia.nvim', tag = 'v1.2.0', config=[[require('config.baleia')]] }
+
 	-- Debugger
 	use { 'mfussenegger/nvim-dap', config=[[require('config.dap')]]}
 	use { "rcarriga/nvim-dap-ui", requires = "mfussenegger/nvim-dap", config=[[require('dapui').setup()]] }
