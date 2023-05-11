@@ -74,6 +74,12 @@ M.server_settings = {
 				command = "clippy"
 			}
 		}
+	},
+
+	pyright = {
+		python = {
+			pythonPath = "python3"
+		}
 	}
 }
 
