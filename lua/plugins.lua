@@ -3,9 +3,18 @@
 
 ---@diagnostic disable-next-line: unused-local
 local function usePlugins(use, use_rocks)
+	-- Toggle terminal
+	use {'akinsho/toggleterm.nvim', tag = '*', config=[[require('toggleterm').setup()]]}
+
 	-- Debugger
-	use { 'puremourning/vimspector', config = [[require 'config.vimspector']] }
-	use 'puuuuh/vimspector-rust'
+	use { 'mfussenegger/nvim-dap', config=[[require('config.dap')]]}
+	use { "rcarriga/nvim-dap-ui", requires = "mfussenegger/nvim-dap", config=[[require('dapui').setup()]] }
+	use 'simrat39/rust-tools.nvim'
+	use {
+		'theHamsta/nvim-dap-virtual-text',
+		requires = {"mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter"},
+		config=[[require('nvim-dap-virtual-text')]]
+	}
 
 	-- Seemless pane switching betwen tmux and vim
 	use 'christoomey/vim-tmux-navigator'
