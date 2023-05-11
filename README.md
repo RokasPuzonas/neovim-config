@@ -8,3 +8,12 @@ git update-index --assume-unchanged lua/plugins-local.lua
 ## Requirements
 * ripgrep - for telescope
 * [A patched font](https://www.nerdfonts.com/) - for icons
+
+## Todo
+* Automatic updating of comments at `#endif`,
+```c
+#ifdef FOOBAR
+// ...
+#endif // FOOBAR
+// The text "FOOBAR" above should update when the paring `#ifdef` updates
+```
