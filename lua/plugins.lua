@@ -16,6 +16,12 @@ local function usePlugins(use, use_rocks)
 	-- Seemless pane switching betwen tmux and vim
 	use 'christoomey/vim-tmux-navigator'
 
+	-- Git blame
+	use {
+		'f-person/git-blame.nvim',
+		config = [[require 'config.gitblame']]
+	}
+
 	-- Ansible file syntax highlighting
 	use 'pearofducks/ansible-vim'
 
