@@ -18,3 +18,4 @@ git update-index --assume-unchanged lua/plugins-local.lua
 // The text "FOOBAR" above should update when the paring `#ifdef` updates
 ```
 * Correctly indent `#ifdef` blocks
+* Fix cmacro indent to not reformat lines, if nothing needs to be changed
