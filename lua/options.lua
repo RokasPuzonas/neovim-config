@@ -138,3 +138,14 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_option(data.buf, 'softtabstop', 2)
 	end
 })
+
+-- Override `ft` for .h files to `c`
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("override-c-header-ft", { clear = true }),
+	pattern = "cpp",
+	callback = function(data)
+		if data.file:match("%.h$") then
+			vim.api.nvim_buf_set_option(data.buf, "ft", "c")
+		end
+	end
+})
