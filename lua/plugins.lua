@@ -4,7 +4,7 @@
 ---@diagnostic disable-next-line: unused-local
 local function usePlugins(use, use_rocks)
 	-- Toggle terminal
-	use {'akinsho/toggleterm.nvim', tag = '*', config=[[require('toggleterm').setup()]]}
+	use {'akinsho/toggleterm.nvim', tag = '*', config=[[require('config.toggleterm')]]}
 
 	-- Colorize ANSI codes
 	use { 'm00qek/baleia.nvim', tag = 'v1.2.0', config=[[require('config.baleia')]] }

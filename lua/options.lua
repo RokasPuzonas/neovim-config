@@ -104,7 +104,18 @@ opt('smartindent', true, buffer)
 opt('shiftwidth', tab_size, buffer)
 opt('tabstop', tab_size, buffer)
 opt('softtabstop', tab_size, buffer)
+opt('cinkeys', '0{,0},0),0],:,!^F,o,O,e')
+opt('cinoptions', 's,e0,n0,f0,{0,}0,^0,L-1,:s,=s,l0,b0,gs,hs,N0,E0,ps,ts,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,k0,m0,j0,J0,)20,*70,#1,P0')
 
 -- Place splits below and to the right by default
 opt('splitbelow', true)
 opt('splitright', true)
+
+-- Remove cmdline when not used
+opt('cmdheight', 0)
+
+-- Scale neovide a bit
+if vim.g.neovide then
+	vim.g.neovide_scale_factor = 0.75
+	vim.g.neovide_hide_mouse_when_typing = true
+end

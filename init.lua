@@ -27,6 +27,9 @@ require("options")
 require("bindings")
 require("pludin-dev")
 
+require("add-guard")
+require("cmacro-align")
+
 -- Misc features
 require("highlight-yank")
 
