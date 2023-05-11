@@ -7,6 +7,6 @@ return {
 				return {"treesitter", "indent"}
 			end
 		})
-		vim.highlight.link("UfoFoldedBg", "ColorColumn")
+		vim.api.nvim_set_hl(0, "UfoFoldedBg", { link = "ColorColumn" })
 	end
 }
