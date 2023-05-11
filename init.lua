@@ -1,3 +1,5 @@
+local cmd = vim.cmd
+
 -- Allow loading */init.lua files
 package.path = "./?/init.lua;"..package.path
 
@@ -17,5 +19,5 @@ require("personal.add-guard")
 require("personal.cmacro-align")
 
 -- THEME_BEGIN
-vim.cmd("colorscheme srcery")
+cmd("colorscheme srcery")
 -- THEME_END
