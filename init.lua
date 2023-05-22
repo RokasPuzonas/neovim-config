@@ -17,6 +17,7 @@ require("bindings")
 require("personal.pludin-dev")
 require("personal.add-guard")
 require("personal.cmacro-align")
+require("personal.uci")
 
 -- THEME_BEGIN
 cmd("colorscheme srcery")
