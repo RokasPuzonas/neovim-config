@@ -13,8 +13,8 @@ require("highlight-yank")
 require("plugin-manager")
 require("options")
 require("bindings")
-require("pludin-dev")
 
+require("personal.pludin-dev")
 require("personal.add-guard")
 require("personal.cmacro-align")
 
