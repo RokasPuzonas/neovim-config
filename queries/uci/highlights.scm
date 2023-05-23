@@ -4,5 +4,6 @@
 "option" @type
 "list" @type
 
+(comment) @comment
 (name) @string
 (string) @string
