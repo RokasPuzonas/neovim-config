@@ -1,5 +1,5 @@
 local ts = vim.treesitter
-local query = ts.parse_query("c", [[
+local query = ts.query.parse("c", [[
 (preproc_function_def value: (preproc_arg) @macro_def)
 (preproc_def value: (preproc_arg) @macro_def)
 ]])
