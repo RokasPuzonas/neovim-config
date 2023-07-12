@@ -33,6 +33,7 @@ return function(use)
 	use_config "diffview"
 	use_config "git-conflict"
 	use_config "doxygen-tk"
+	use_config "navbuddy"
 	-- use_config "ufo"
 
 	use {
