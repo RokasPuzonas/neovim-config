@@ -34,6 +34,7 @@ return function(use)
 	use_config "git-conflict"
 	use_config "doxygen-tk"
 	use_config "navbuddy"
+	use_config "escape"
 	-- use_config "ufo"
 
 	use {
