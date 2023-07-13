@@ -76,6 +76,7 @@ return function(use)
 		config_name = "luapad"
 	}
 
+	use "kevinhwang91/nvim-bqf"
 	use "tpope/vim-eunuch"
 	use "christoomey/vim-tmux-navigator"
 	use "eandrju/cellular-automaton.nvim"
