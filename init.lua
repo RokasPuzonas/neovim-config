@@ -19,6 +19,15 @@ require("personal.add-guard")
 require("personal.cmacro-align")
 require("personal.uci")
 
+vim.g.python_ident = {
+  disable_parentheses_indenting = false,
+  closed_paren_align_last_line = false,
+  searchpair_timeout = 150,
+  continue = "shiftwidth()",
+  open_paren = "shiftwidth()",
+  nested_paren = "shiftwidth()"
+}
+
 -- THEME_BEGIN
 cmd("colorscheme srcery")
 -- THEME_END
