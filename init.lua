@@ -1,5 +1,7 @@
 local cmd = vim.cmd
 
+table.unpack = unpack
+
 -- Allow loading */init.lua files
 package.path = "./?/init.lua;"..package.path
 

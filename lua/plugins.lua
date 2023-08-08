@@ -33,6 +33,8 @@ return function(use)
 	use_config "diffview"
 	use_config "git-conflict"
 	use_config "doxygen-tk"
+	use_config "navbuddy"
+	use_config "escape"
 	-- use_config "ufo"
 
 	use {
@@ -74,6 +76,8 @@ return function(use)
 		config_name = "luapad"
 	}
 
+	use "krady21/compiler-explorer.nvim"
+	use "kevinhwang91/nvim-bqf"
 	use "tpope/vim-eunuch"
 	use "christoomey/vim-tmux-navigator"
 	use "eandrju/cellular-automaton.nvim"
