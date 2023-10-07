@@ -1,8 +1,6 @@
+local M = {}
+
 local ts = vim.treesitter
-local query = ts.query.parse("c", [[
-(preproc_function_def value: (preproc_arg) @macro_def)
-(preproc_def value: (preproc_arg) @macro_def)
-]])
 
 local function get_ast_root(bufnr)
 	local tree = ts.get_parser(bufnr, "c"):parse()
@@ -10,12 +8,29 @@ local function get_ast_root(bufnr)
 end
 
 
-local capture_lookup = {}
-for id, name in ipairs(query.captures) do
-	capture_lookup[name] = id
+local function do_lines_match(lines1, lines2)
+	if #lines1 ~= lines2 then
+		return false
+	end
+	for i, line1 in ipairs(lines1) do
+		if line1 ~= lines2[i] then
+			return false
+		end
+	end
+	return true
 end
 
 local function format_macros()
+	local query = ts.query.parse("c", [[
+	(preproc_function_def value: (preproc_arg) @macro_def)
+	(preproc_def value: (preproc_arg) @macro_def)
+	]])
+
+	local capture_lookup = {}
+	for id, name in ipairs(query.captures) do
+		capture_lookup[name] = id
+	end
+
 	local bufnr = vim.api.nvim_get_current_buf()
 	local winnr = vim.api.nvim_get_current_win()
 
@@ -28,12 +43,14 @@ local function format_macros()
 		local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line+1, false)
 		local tabstop = tonumber(vim.bo[bufnr].tabstop) or 8
 
+		local new_lines = {}
 		for i, line in ipairs(lines) do
 			lines[i] = line:match("^(.-)%s*[\\]?$")
+			new_lines[i] = lines[i]
 		end
 
 		while true do
-			local last_line = lines[#lines]
+			local last_line = new_lines[#lines]
 			if not last_line then break end
 			if last_line:match("^%s*//") or last_line:match("^%s*/%*") or last_line:match("^%s*$") then
 				table.remove(lines, #lines)
@@ -43,7 +60,7 @@ local function format_macros()
 			end
 		end
 
-		if #lines > 2 then
+		if #new_lines > 2 then
 			local line_length = 0
 			do
 				local textwidth  = vim.bo[bufnr].textwidth
@@ -59,30 +76,36 @@ local function format_macros()
 				end
 
 				if line_length <= 0 then
-					for _, line in ipairs(lines) do
+					for _, line in ipairs(new_lines) do
 						line_length = math.max(line_length, #line+2)
 					end
 				end
 			end
 
-			for i = 1, #lines-1 do
-				local line = lines[i]
+			for i = 1, #new_lines-1 do
+				local line = new_lines[i]
 				local length = #(line:gsub("\t", (" "):rep(tabstop)))
 				lines[i] = line .. (" "):rep(line_length - length-2) .. " \\"
 			end
 
-			vim.api.nvim_buf_set_lines(bufnr, start_line, end_line+1, false, lines)
+			if not do_lines_match(lines, new_lines) then
+				vim.api.nvim_buf_set_lines(bufnr, start_line, end_line+1, false, lines)
+			end
 		end
 	end
 end
 
-local group = vim.api.nvim_create_augroup("UpdateCMacro", { clear = true })
-for _, cmd in ipairs{"InsertLeavePre", "BufWritePre"} do
-	vim.api.nvim_create_autocmd(cmd, {
-		group = group,
-		pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.cc"},
-		callback = function (data)
-			format_macros()
-		end
-	})
+function M.load()
+	local group = vim.api.nvim_create_augroup("UpdateCMacro", { clear = true })
+	for _, cmd in ipairs{"InsertLeavePre", "BufWritePre"} do
+		vim.api.nvim_create_autocmd(cmd, {
+			group = group,
+			pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.cc"},
+			callback = function (data)
+				format_macros()
+			end
+		})
+	end
 end
+
+return M
