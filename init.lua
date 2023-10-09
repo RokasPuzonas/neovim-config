@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.python3_host_prog = "python3.10"
+
 -- If possible use 24 Bit Colors
 if vim.fn.has("termguicolors") == 1 then
   vim.o.termguicolors = true
@@ -370,7 +372,8 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
     },
     keys = {
-      { id = "Toggle neo tre[e]", "<leader>e", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle file tre[e]" },
+      { "<leader>f", "<cmd>Neotree reveal toggle<cr>", desc = "Toggle file tre[e] (file)" },
     },
     config = function()
       require("neo-tree").setup({
@@ -379,6 +382,9 @@ require("lazy").setup({
             ["<c-v>"] = "open_vsplit",
             ["<c-x>"] = "open_split"
           }
+        },
+        filesystem = {
+          group_empty_dirs = false
         }
       })
     end
@@ -611,6 +617,12 @@ do
   vim.keymap.set("n", "<c-j>", "<c-w>j")
   vim.keymap.set("n", "<c-k>", "<c-w>k")
   vim.keymap.set("n", "<c-l>", "<c-w>l")
+
+  -- Resize windows
+  vim.keymap.set('n', '<M-j>', ':resize -2<cr>', { silent = true })
+  vim.keymap.set('n', '<M-k>', ':resize +2<cr>', { silent = true})
+  vim.keymap.set('n', '<M-h>', ':vertical resize -2<cr>', { silent = true })
+  vim.keymap.set('n', '<M-l>', ':vertical resize +2<cr>', { silent = true })
 end
 
 -- Change c file comment string
