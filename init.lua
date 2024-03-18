@@ -279,6 +279,7 @@ require("lazy").setup({
   {
     "fedepujol/move.nvim",
     config = function()
+      require("move").setup({})
       local opts = { noremap = true, silent = true }
       vim.keymap.set("v", "<S-j>", ":MoveBlock(1)<CR>", opts)
       vim.keymap.set("v", "<S-k>", ":MoveBlock(-1)<CR>", opts)
