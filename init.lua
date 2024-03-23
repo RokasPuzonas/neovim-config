@@ -25,6 +25,7 @@ do
 end
 
 require("lazy").setup({
+  "jwalton512/vim-blade",
   "psliwka/vim-smoothie",
 	"tpope/vim-unimpaired",
   "tpope/vim-eunuch",
