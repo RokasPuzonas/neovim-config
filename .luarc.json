@@ -4,5 +4,6 @@
 	"Lua.diagnostics.globals": ["vim", "packer_plugins"],
     "diagnostics.disable": [
         "missing-fields"
-    ]
+    ],
+    "workspace.checkThirdParty": "Disable"
 }

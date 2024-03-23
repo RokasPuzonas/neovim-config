@@ -40,6 +40,16 @@ require("lazy").setup({
   "wellle/targets.vim",
 
   {
+    "backdround/global-note.nvim",
+    config = function()
+      require("global-note").setup({})
+    end,
+    keys = {
+      { "<leader>n", function() require("global-note").toggle_note() end, desc = "Toggle [N]otes" },
+    }
+  },
+
+  {
     "krady21/compiler-explorer.nvim",
     cmd = {"CECompile", "CECompileLive", "CEFormat", "CEAddLibrary", "CELoadExample", "CEOpenWebsite", "CEDeleteCache", "CEShowTooltip", "CEGotoLabel"}
   },
@@ -261,13 +271,13 @@ require("lazy").setup({
     }
   },
 
-  {
-    "rest-nvim/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    keys = {
-      {mode="n", "<leader>n", "<Plug>RestNvim", desc = "Run HTTP request under cursor"}
-    }
-  },
+  -- {
+  --   "rest-nvim/rest.nvim",
+  --   requires = { "nvim-lua/plenary.nvim" },
+  --   keys = {
+  --     {mode="n", "<leader>n", "<Plug>RestNvim", desc = "Run HTTP request under cursor"}
+  --   }
+  -- },
 
   {
     "jenterkin/vim-autosource",
@@ -280,7 +290,6 @@ require("lazy").setup({
   {
     "fedepujol/move.nvim",
     config = function()
-      require("move").setup({})
       local opts = { noremap = true, silent = true }
       vim.keymap.set("v", "<S-j>", ":MoveBlock(1)<CR>", opts)
       vim.keymap.set("v", "<S-k>", ":MoveBlock(-1)<CR>", opts)
@@ -931,6 +940,8 @@ cmp.setup.cmdline("/", {
 		{ name = "buffer" }
 	}
 })
+
+require("move").setup({})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
