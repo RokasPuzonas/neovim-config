@@ -626,6 +626,11 @@ do
     vim.g.neovide_scale_factor = 0.75
     vim.g.neovide_hide_mouse_when_typing = true
   end
+
+  -- Stop neovim from confusing tools like inotify
+  -- Because by default, it will rename the original and then delete it.
+  -- This confuses inotify to think the file doesn't exist and stops trackign it.
+  vim.o.backupcopy = "yes"
 end
 
 -- [[ Basic Keymaps ]]
