@@ -25,6 +25,36 @@ do
 end
 
 require("lazy").setup({
+  {
+    "NTBBloodbath/zig-tools.nvim",
+    -- Load zig-tools.nvim only in Zig buffers
+    ft = "zig",
+    config = function()
+      -- Initialize with default config
+      require("zig-tools").setup()
+    end,
+    dependencies = {
+      {
+        "akinsho/toggleterm.nvim",
+        config = function()
+          require("toggleterm").setup()
+        end,
+      },
+      {
+        "nvim-lua/plenary.nvim",
+        module_pattern = "plenary.*"
+      }
+    },
+  },
+
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      plugins = {
+        gitsigns = { enabled = true }
+      }
+    }
+  },
   "jwalton512/vim-blade",
   "psliwka/vim-smoothie",
 	"tpope/vim-unimpaired",
@@ -178,7 +208,7 @@ require("lazy").setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { "folke/which-key.nvim", opts = {} },
+  -- { "folke/which-key.nvim", opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -815,15 +845,15 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require("which-key").register({
-  ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-  ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-  ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
-  ["<leader>h"] = { name = "More git", _ = "which_key_ignore" },
-  ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-  ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-  ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-})
+-- require("which-key").register({
+--   ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
+--   ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
+--   ["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
+--   ["<leader>h"] = { name = "More git", _ = "which_key_ignore" },
+--   ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
+--   ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+--   ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+-- })
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
