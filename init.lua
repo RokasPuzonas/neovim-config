@@ -27,6 +27,9 @@ vim.opt.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- Formatting is just too slow. So just disable it.
+vim.g.zig_fmt_autosave = 0
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -116,17 +119,17 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Better indenting
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
 -- Save file
-vim.keymap.set('n', '<C-s>', ':w<cr>', { silent = true })
+vim.keymap.set('n', '<C-s>', ':w<cr>', { noremap = true, silent = true })
 
 -- Disable Ex mode
 vim.keymap.set('n', 'Q', '<nop>')
@@ -179,6 +182,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require('lazy').setup({
+  -- Add spacing so that data looks like a table
+  'godlygeek/tabular',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -243,6 +249,15 @@ require('lazy').setup({
     },
   },
 
+  {
+    'MunsMan/kitty-navigator.nvim',
+    build = {
+      'cp navigate_kitty.py ~/.config/kitty',
+      'cp pass_keys.py ~/.config/kitty',
+    },
+    opts = { keybindings = {} },
+  },
+
   { 'tikhomirov/vim-glsl', ft = 'glsl' },
 
   {
@@ -268,6 +283,7 @@ require('lazy').setup({
     'fedepujol/move.nvim',
     opts = {},
     config = function()
+      require('move').setup {}
       local opts = { noremap = true, silent = true }
       vim.keymap.set('v', '<S-j>', ':MoveBlock(1)<CR>', opts)
       vim.keymap.set('v', '<S-k>', ':MoveBlock(-1)<CR>', opts)
