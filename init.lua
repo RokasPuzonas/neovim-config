@@ -47,6 +47,10 @@ vim.o.foldlevelstart = 99
 
 -- Save undo history
 vim.opt.undofile = true
+vim.opt.undodir = '/tmp/vim-undodir'
+vim.opt.swapfile = false
+vim.opt.writebackup = false
+vim.opt.backup = false
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
@@ -148,6 +152,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.zig', '*.zon' },
+  callback = function(ev)
+    vim.lsp.buf.code_action {
+      context = { only = { 'source.fixAll' } },
+      apply = true,
+    }
+  end,
+})
+
 -- Override `ft` for .h files to `c`
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('override-c-header-ft', { clear = true }),
@@ -188,8 +202,8 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- Smooth scrolling
-  'psliwka/vim-smoothie',
+  -- Smooth scrolling. TODO: Only enable this if not in neovide
+  -- 'psliwka/vim-smoothie',
 
   -- Select indented text
   'michaeljsmith/vim-indent-object',
@@ -704,6 +718,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
+        zls = {},
 
         lua_ls = {
           -- cmd = { ... },
@@ -1046,6 +1061,10 @@ require('lazy').setup({
     },
   },
 })
+
+if vim.g.neovide then
+  vim.g.neovide_scale_factor = 0.8
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
