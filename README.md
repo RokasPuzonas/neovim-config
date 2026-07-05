@@ -1,21 +1,5 @@
-# Neovim Config
+# Neovim config
 
-To ignore changes to local plugins file. Used for keeping computer specific configs/plugins
-```shell
-git update-index --assume-unchanged lua/plugins-local.lua
-```
+It might to be the best, it might contains bugs, but it's mine and I like it.
 
-## Requirements
-* ripgrep - for telescope
-* [A patched font](https://www.nerdfonts.com/) - for icons
-
-## Todo
-* Automatic updating of comments at `#endif`,
-```c
-#ifdef FOOBAR
-// ...
-#endif // FOOBAR
-// The text "FOOBAR" above should update when the paring `#ifdef` updates
-```
-* Correctly indent `#ifdef` blocks
-* Fix cmacro indent to not reformat lines, if nothing needs to be changed
+Used [kickstart.nvim#f0a2108](https://github.com/nvim-lua/kickstart.nvim/tree/f0a2108ed51547793c758d9318bad94f242b22e5) as a template

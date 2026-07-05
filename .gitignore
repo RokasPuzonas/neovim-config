@@ -1,2 +1,8 @@
-plugin/packer-compiled.lua
-*.log
+tags
+test.sh
+.luarc.json
+nvim
+
+spell/
+
+.DS_Store
