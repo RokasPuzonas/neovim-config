@@ -212,6 +212,16 @@ do
     end,
   })
 
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = { '*.zig', '*.zon' },
+    callback = function(ev)
+      vim.lsp.buf.code_action {
+        context = { only = { 'source.fixAll' } },
+        apply = true,
+      }
+    end,
+  })
+
   -- Add abbreviation for != => ~= in lua files
   vim.api.nvim_create_autocmd('BufEnter', {
     group = vim.api.nvim_create_augroup('MyTermOpen', { clear = true }),
@@ -412,15 +422,11 @@ do
 
   vim.pack.add { gh 'catgoose/nvim-colorizer.lua' }
   require('colorizer').setup({
-    RGB = true,
-    RRGGBB = true,
-    names = false,
-    RRGGBBAA = true,
-    rgb_fn = true,
-    hsl_fn = true,
-    css = false,
-    css_fn = false,
-    mode = 'background',
+    parsers = {
+      names = { enable = false },
+      rgb = { enable = true },
+      hsl = { enable = true }
+    }
   })
 
   vim.pack.add { gh 'stevearc/oil.nvim' }
@@ -614,6 +620,8 @@ do
 
     -- stylua = {}, -- Used to format Lua code
 
+    zls = {},
+
     -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
       on_init = function(client)
@@ -763,6 +771,12 @@ do
       -- See `:help blink-cmp-config-keymap` for defining your own keymap
       preset = 'default',
 
+      ['<C-Space>'] = {
+        function(cmp)
+          cmp.show()
+        end,
+      },
+
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
     },
@@ -777,6 +791,10 @@ do
       -- By default, you may press `<c-space>` to show the documentation.
       -- Optionally, set `auto_show = true` to show the documentation after a delay.
       documentation = { auto_show = false, auto_show_delay_ms = 500 },
+      trigger = {
+        show_on_keyword = false,
+        show_on_trigger_character = false,
+      },
     },
 
     sources = {
