@@ -420,13 +420,45 @@ do
   vim.keymap.set('v', '<S-j>', ':MoveBlock(1)<CR>', opts)
   vim.keymap.set('v', '<S-k>', ':MoveBlock(-1)<CR>', opts)
 
-  vim.pack.add { gh 'catgoose/nvim-colorizer.lua' }
-  require('colorizer').setup({
-    parsers = {
-      names = { enable = false },
-      rgb = { enable = true },
-      hsl = { enable = true }
-    }
+  vim.pack.add { gh 'nvim-mini/mini.hipatterns' }
+  require("mini.hipatterns").setup({
+      highlighters = {
+          hex_color = {
+              pattern = "#%x%x%x%x?%x?%x?%x?%x?",
+              group = function(_, match)
+                  local hex = match:sub(2)
+
+                  if #hex == 3 or #hex == 6 or #hex == 8 then
+                      return MiniHipatterns.compute_hex_color_group(
+                          match,
+                          "bg"
+                      )
+                  end
+              end,
+          },
+
+          rgb_color = {
+              pattern = "rgba?%([^)]*%)",
+              group = function(_, match)
+                  local r, g, b = match:match(
+                      "rgb%(%s*(%d+)%s*,%s*(%d+)%s*,%s*(%d+)"
+                  )
+
+                  if not r then
+                      r, g, b = match:match(
+                          "rgba%(%s*(%d+)%s*,%s*(%d+)%s*,%s*(%d+)"
+                      )
+                  end
+
+                  if r then
+                      return MiniHipatterns.compute_hex_color_group(
+                          string.format("#%02x%02x%02x", r, g, b),
+                          "bg"
+                      )
+                  end
+              end,
+          },
+      },
   })
 
   vim.pack.add { gh 'stevearc/oil.nvim' }

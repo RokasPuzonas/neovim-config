@@ -66,6 +66,10 @@
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/mason-org/mason.nvim"
     },
+    "mini.hipatterns": {
+      "rev": "247c0173579a29af60f25f00671a75c57090be9c",
+      "src": "https://github.com/nvim-mini/mini.hipatterns"
+    },
     "mini.nvim": {
       "rev": "c5cdbadeb423ff724e27a42ab2d1c504d1d6fc5a",
       "src": "https://github.com/nvim-mini/mini.nvim"
@@ -77,10 +81,6 @@
     "nvim-bqf": {
       "rev": "ba2b365969d7c2c6301d48e13aeee59568765529",
       "src": "https://github.com/kevinhwang91/nvim-bqf"
-    },
-    "nvim-colorizer.lua": {
-      "rev": "81e676d3203c9eb6e4c0ccf1eba1679296ef923f",
-      "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-dap": {
       "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
